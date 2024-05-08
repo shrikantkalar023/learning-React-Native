@@ -3,3 +3,5 @@
 2. **Image**: require fn to load local images & uri, width, height to load imgs from the web.
 
 3. **Touchable**: to make components clickable. _TouchableNativeFeedback_ is only for Android.
+
+4. **Alert.prompt** only works on ios.
