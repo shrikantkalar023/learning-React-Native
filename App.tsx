@@ -1,4 +1,13 @@
-import { Image, SafeAreaView, StyleSheet, Text } from "react-native";
+import {
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  TouchableHighlight,
+  TouchableNativeFeedback,
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+  View,
+} from "react-native";
 
 export default function App() {
   return (
@@ -7,13 +16,18 @@ export default function App() {
         Hello, World!
       </Text>
       {/* <Image source={require("./assets/splash.png")} /> */}
-      <Image
-        source={{
-          width: 200,
-          height: 300,
-          uri: "https://picsum.photos/200/300",
-        }}
-      />
+      <TouchableNativeFeedback onPress={() => console.log("Image pressed")}>
+        {/* <Image
+          source={{
+            width: 200,
+            height: 300,
+            uri: "https://picsum.photos/200/300",
+          }}
+        /> */}
+        <View
+          style={{ width: 100, height: 100, backgroundColor: "dodgerblue" }}
+        ></View>
+      </TouchableNativeFeedback>
     </SafeAreaView>
   );
 }
