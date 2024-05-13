@@ -5,3 +5,7 @@
 3. **Touchable**: to make components clickable. _TouchableNativeFeedback_ is only for Android.
 
 4. **Alert.prompt** only works on ios.
+
+5. **StyleSheet**: validates the style properties. (didn't work when i tried this). _Recommended to define styles_ bsc of _optimizations_.
+
+6. When applying multiple styles, the last style will override the previous ones.
