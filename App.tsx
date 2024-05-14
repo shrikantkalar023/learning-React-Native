@@ -1,20 +1,24 @@
+import { useDeviceOrientation } from "@react-native-community/hooks";
 import {
-  Button,
-  SafeAreaView,
-  StyleSheet,
   Platform,
+  SafeAreaView,
   StatusBar,
+  StyleSheet,
   View,
-  Dimensions,
 } from "react-native";
 
 export default function App() {
-  console.log(Dimensions.get("screen"));
+  const deviceOrientation = useDeviceOrientation();
+  const dimensions = useWindowDimensions();
 
   return (
     <SafeAreaView style={styles.container}>
       <View
-        style={{ backgroundColor: "dodgerblue", width: "50%", height: 70 }}
+        style={{
+          backgroundColor: "dodgerblue",
+          width: "100%",
+          height: deviceOrientation === "portrait" ? "30%" : "100%",
+        }}
       />
     </SafeAreaView>
   );
@@ -23,5 +27,6 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
+    height: "100%",
   },
 });

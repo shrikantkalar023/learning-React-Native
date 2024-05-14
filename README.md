@@ -12,4 +12,4 @@
 
 7. Width, Height numbers in styles are in _DIPs (Density Independent Pixels)_. By expressing the size in DIPs, the size will be almost the same on different devices.
 
-8. **Dimensions API**: to get the width and height of the screen. Valuse don't get updated when the **screen rotates**.
+8. **Dimensions API**: to get the width and height of the screen. Values don't get updated when the **screen rotates**. Use useWindowDimensions (instead of Dimensions API) hook to get the updated values.
