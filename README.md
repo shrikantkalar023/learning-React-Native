@@ -9,3 +9,7 @@
 5. **StyleSheet**: validates the style properties. (didn't work when i tried this). _Recommended to define styles_ bsc of _optimizations_.
 
 6. When applying multiple styles, the last style will override the previous ones.
+
+7. Width, Height numbers in styles are in _DIPs (Density Independent Pixels)_. By expressing the size in DIPs, the size will be almost the same on different devices.
+
+8. **Dimensions API**: to get the width and height of the screen. Valuse don't get updated when the **screen rotates**.
