@@ -11,21 +11,22 @@ export default function App() {
         alignItems: "center", // default is stretch
       }}
     >
-      {/* flexBasis: 100 is same as width: 100 below */}
       <View
         style={{
           backgroundColor: "blue",
-          flexBasis: 100,
-          flexGrow: 1, // same as setting flex: 1
+          width: 100,
           height: 100,
+          top: 50, // this is absolute positioning
         }}
       />
       <View
         style={{
           backgroundColor: "gold",
-          width: 400,
+          width: 100,
+          top: 100,
+          left: 50,
           height: 100,
-          flexShrink: 1, // same as setting flex: -1
+          position: "absolute",
         }}
       />
       <View style={{ backgroundColor: "tomato", width: 100, height: 100 }} />

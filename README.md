@@ -43,3 +43,9 @@
 22. **flexShrink**: to allow the item to shrink if there is not enough space, same as flex: -1.
 
 23. **flex** is shorthand for flexGrow & flexShrink.
+
+24. use **top, right, bottom, left** to position an element relative to its current position without affecting the layout around it.
+
+25. All components have **default position: relative**.
+
+26. **position: absolute** : to position an element relative to its parent and the layout around it will get affected.
