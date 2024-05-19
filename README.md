@@ -29,3 +29,9 @@
 15. **justifyContent**: aligns the children along the main axis. Default is flex-start.
 
 16. **alignItems**: aligns the children along the cross axis. Default is stretch.
+
+17. **alignSelf**: to align a children of flex containers differently than the other children.
+
+18. **flexWrap**: to wrap the children if they don't fit in the container.
+
+19. When using **flexWrap**, **alignItems** determines the alignment of items within each line. To align the whole content, use **alignContent**, which works only if we have wrapping.
