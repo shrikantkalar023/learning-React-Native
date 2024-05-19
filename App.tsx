@@ -9,16 +9,26 @@ export default function App() {
         flexDirection: "row", // default is column
         justifyContent: "center", // default is flex-start
         alignItems: "center", // default is stretch
-        flexWrap: "wrap", // default is nowrap
-        alignContent: "center",
       }}
     >
-      {/* flex: 2 takes 2/4 of the container below */}
-      <View style={{ backgroundColor: "blue", width: 100, height: 300 }} />
-      <View style={{ backgroundColor: "gold", width: 100, height: 100 }} />
+      {/* flexBasis: 100 is same as width: 100 below */}
+      <View
+        style={{
+          backgroundColor: "blue",
+          flexBasis: 100,
+          flexGrow: 1, // same as setting flex: 1
+          height: 100,
+        }}
+      />
+      <View
+        style={{
+          backgroundColor: "gold",
+          width: 400,
+          height: 100,
+          flexShrink: 1, // same as setting flex: -1
+        }}
+      />
       <View style={{ backgroundColor: "tomato", width: 100, height: 100 }} />
-      <View style={{ backgroundColor: "gray", width: 100, height: 100 }} />
-      <View style={{ backgroundColor: "green", width: 100, height: 100 }} />
     </View>
   );
 }

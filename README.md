@@ -35,3 +35,11 @@
 18. **flexWrap**: to wrap the children if they don't fit in the container.
 
 19. When using **flexWrap**, **alignItems** determines the alignment of items within each line. To align the whole content, use **alignContent**, which works only if we have wrapping.
+
+20. **flexbasis** : set size of item along primary axis. maps to width or height.
+
+21. **flexGrow**: to allow the item to grow if there is extra space, same as flex: 1.
+
+22. **flexShrink**: to allow the item to shrink if there is not enough space, same as flex: -1.
+
+23. **flex** is shorthand for flexGrow & flexShrink.
