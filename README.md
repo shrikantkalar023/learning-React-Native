@@ -23,3 +23,5 @@
 12. **SafeAreaView** only works on ios. Add padding = StatusBar.currentHeight on android.
 
 13. **flex**: to divide the space in the container. _flex: 1_ takes the entire space. Inside a container, if we have 2 children, and we set _flex: 1_ on both, they will take equal space. If we set _flex: 2_ on one and _flex: 1_ on the other, the first one will take 2/3 and the second one will take 1/3 of the space.
+
+14. **flexDirection**: default is column.
