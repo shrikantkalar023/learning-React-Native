@@ -12,4 +12,14 @@
 
 7. Width, Height numbers in styles are in _DIPs (Density Independent Pixels)_. By expressing the size in DIPs, the size will be almost the same on different devices.
 
-8. **Dimensions API**: to get the width and height of the screen. Values don't get updated when the **screen rotates**. Use useWindowDimensions (instead of Dimensions API) hook to get the updated values.
+8. **useWindowDimensions**: to get the width and height of the screen. Values get auto updated when the **screen rotates**. Use **useDeviceOrientation** from react-native-community/hooks for orientation value (portrait or landscape). Need to set orientation to default in the app.json file to support orientation changes.
+
+9. We need to set **height: 100% on parent view** to make the child view take the correct height %.
+
+10. **Platform**: to check the platform. _Platform.OS_ returns ios, android, macos, windows, web.
+
+11. **StatusBar.currentHeight**: to get the height of the status bar.
+
+12. **SafeAreaView** only works on ios. Add padding = StatusBar.currentHeight on android.
+
+13. **flex**: to divide the space in the container. _flex: 1_ takes the entire space. Inside a container, if we have 2 children, and we set _flex: 1_ on both, they will take equal space. If we set _flex: 2_ on one and _flex: 1_ on the other, the first one will take 2/3 and the second one will take 1/3 of the space.
