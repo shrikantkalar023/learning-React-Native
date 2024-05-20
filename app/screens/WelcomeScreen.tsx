@@ -1,4 +1,5 @@
 import { View, Image, ImageBackground, StyleSheet, Text } from "react-native";
+import colors from "../config/colors";
 
 const WelcomeScreen = () => {
   return (
@@ -15,8 +16,10 @@ const WelcomeScreen = () => {
           />
           <Text>Sell What You Don't Need</Text>
         </View>
-        <View style={[styles.button, { backgroundColor: "red" }]} />
-        <View style={[styles.button, , { backgroundColor: "dodgerblue" }]} />
+        <View style={[styles.button, { backgroundColor: colors.primary }]} />
+        <View
+          style={[styles.button, , { backgroundColor: colors.secondary }]}
+        />
       </ImageBackground>
     </>
   );
