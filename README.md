@@ -1,6 +1,6 @@
 1. **Safe Area View**: used to make sure that the content is not hidden by the notch or the home indicator. View, Safe Area View are like divs in HTML.
 
-2. **Image**: require fn to load local images & uri, width, height to load imgs from the web.
+2. **Image**: require fn to load local images & uri, width, height to load imgs from the web. **ImageBackground** can be used to set a background image.
 
 3. **Touchable**: to make components clickable. _TouchableNativeFeedback_ is only for Android.
 
@@ -8,7 +8,7 @@
 
 5. **StyleSheet**: validates the style properties. (didn't work when i tried this). _Recommended to define styles_ bsc of _optimizations_.
 
-6. When applying multiple styles, the last style will override the previous ones.
+6. When applying _multiple styles_, the _last style will override_ the previous ones.
 
 7. Width, Height numbers in styles are in _DIPs (Density Independent Pixels)_. By expressing the size in DIPs, the size will be almost the same on different devices.
 
@@ -18,7 +18,7 @@
 
 10. **Platform**: to check the platform. _Platform.OS_ returns ios, android, macos, windows, web.
 
-11. **StatusBar.currentHeight**: to get the height of the status bar.
+11. **StatusBar.currentHeight**: to get the height of the status bar on android.
 
 12. **SafeAreaView** only works on ios. Add padding = StatusBar.currentHeight on android.
 
