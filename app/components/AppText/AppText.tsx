@@ -1,5 +1,7 @@
 import { ReactNode } from "react";
-import { StyleSheet, Text } from "react-native";
+import { Text } from "react-native";
+
+import styles from "./styles";
 
 interface Props {
   children: ReactNode;
@@ -10,11 +12,3 @@ const AppText = ({ children }: Props) => {
 };
 
 export default AppText;
-
-const styles = StyleSheet.create({
-  text: {
-    color: "blue",
-    fontSize: 20,
-    fontFamily: "Roboto",
-  },
-});
