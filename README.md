@@ -53,3 +53,5 @@
 27. **position: absolute** : to position an element relative to its parent and the layout around it will get affected.
 
 28. **borderColor, borderWidth, borderRadius** are used to style borders. can be applied to any side. **borderRadius: at least 50%** height width to make a circle.
+
+29. **Shadows** : set _shadowOffset_, _shadowOpacity_ for ios. set _elevation_ in android. _shadowColor_ works in both. _shadowRadius_ is optional, works only in ios.

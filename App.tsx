@@ -14,11 +14,15 @@ export default function App() {
           width: 50,
           height: 50,
           backgroundColor: "red",
-          borderColor: "black",
-          borderWidth: 5,
-          borderRadius: 50, // at least 50% of width and height to make it a circle
-          borderTopEndRadius: 10,
-          borderTopStartRadius: 10,
+          shadowColor: "pink", // both for ios and android
+          elevation: 5, // for android.
+          shadowOffset: {
+            // for ios
+            height: 10,
+            width: 10,
+          },
+          shadowOpacity: 1, // for ios
+          shadowRadius: 5, // for ios
         }}
       ></View>
     </View>
