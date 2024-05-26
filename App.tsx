@@ -1,4 +1,4 @@
-import { View } from "react-native";
+import { Text, View } from "react-native";
 
 export default function App() {
   return (
@@ -9,22 +9,21 @@ export default function App() {
         alignItems: "center",
       }}
     >
-      <View
+      <Text
         style={{
-          width: 50,
-          height: 50,
-          backgroundColor: "red",
-          shadowColor: "pink", // both for ios and android
-          elevation: 5, // for android.
-          shadowOffset: {
-            // for ios
-            height: 10,
-            width: 10,
-          },
-          shadowOpacity: 1, // for ios
-          shadowRadius: 5, // for ios
+          fontSize: 24,
+          // fontFamily: "Roboto",
+          fontStyle: "italic",
+          fontWeight: "600",
+          color: "tomato",
+          textTransform: "capitalize",
+          textAlign: "center",
+          lineHeight: 30,
         }}
-      ></View>
+      >
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum
+        dolor sit amet consectetur adipisicing elit. Minima, id.
+      </Text>
     </View>
   );
 }
