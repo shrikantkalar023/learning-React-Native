@@ -1,4 +1,6 @@
-import { Text, View } from "react-native";
+import { View } from "react-native";
+
+import AppText from "./app/components/AppText";
 
 export default function App() {
   return (
@@ -9,21 +11,10 @@ export default function App() {
         alignItems: "center",
       }}
     >
-      <Text
-        style={{
-          fontSize: 24,
-          // fontFamily: "Roboto",
-          fontStyle: "italic",
-          fontWeight: "600",
-          color: "tomato",
-          textTransform: "capitalize",
-          textAlign: "center",
-          lineHeight: 30,
-        }}
-      >
+      <AppText>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum
         dolor sit amet consectetur adipisicing elit. Minima, id.
-      </Text>
+      </AppText>
     </View>
   );
 }
