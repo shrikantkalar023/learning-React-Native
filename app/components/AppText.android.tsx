@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { Text, StyleSheet, Platform } from "react-native";
+import { StyleSheet, Text } from "react-native";
 
 interface Props {
   children: ReactNode;
@@ -13,15 +13,8 @@ export default AppText;
 
 const styles = StyleSheet.create({
   text: {
-    color: "tomato",
+    color: "blue",
     fontSize: 20,
-    ...Platform.select({
-      ios: {
-        fontFamily: "Avenir",
-      },
-      android: {
-        fontFamily: "Roboto",
-      },
-    }),
+    fontFamily: "Roboto",
   },
 });

@@ -57,3 +57,7 @@
 29. **Shadows** : set _shadowOffset_, _shadowOpacity_ for ios. set _elevation_ in android. _shadowColor_ works in both. _shadowRadius_ is optional, works only in ios.
 
 30. No **style inheritance** in react native. Encapsulate styles to reuse them.
+
+31. **Platform.select**: to apply different styles based on the platform or make platform-specific modules e.g. _AppText.ios.tsx_, _AppText.android.tsx_.
+
+32. use **@expo/vector-icons** to easily set up icons.
