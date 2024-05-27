@@ -5,6 +5,7 @@ const WelcomeScreen = () => {
   return (
     <>
       <ImageBackground
+        blurRadius={10}
         source={require("../assets/background.jpg")}
         resizeMode="cover"
         style={styles.background}
@@ -14,7 +15,7 @@ const WelcomeScreen = () => {
             source={require("../assets/logo-red.png")}
             style={styles.logo}
           />
-          <Text>Sell What You Don't Need</Text>
+          <Text style={styles.tagline}>Sell What You Don't Need</Text>
         </View>
         <View style={styles.buttonContainer}>
           <AppButton title="login" onPress={() => console.log("tapped")} />
@@ -45,6 +46,11 @@ const styles = StyleSheet.create({
   logo: {
     height: 100,
     width: 100,
+  },
+  tagline: {
+    fontSize: 25,
+    fontWeight: "600",
+    marginVertical: 20,
   },
   buttonContainer: {
     width: "100%",
