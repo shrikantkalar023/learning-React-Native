@@ -1,5 +1,5 @@
-import { View, Image, ImageBackground, StyleSheet, Text } from "react-native";
-import colors from "../config/colors";
+import { Image, ImageBackground, StyleSheet, Text, View } from "react-native";
+import AppButton from "../components/AppButton";
 
 const WelcomeScreen = () => {
   return (
@@ -16,10 +16,14 @@ const WelcomeScreen = () => {
           />
           <Text>Sell What You Don't Need</Text>
         </View>
-        <View style={[styles.button, { backgroundColor: colors.primary }]} />
-        <View
-          style={[styles.button, , { backgroundColor: colors.secondary }]}
-        />
+        <View style={styles.buttonContainer}>
+          <AppButton title="login" onPress={() => console.log("tapped")} />
+          <AppButton
+            title="register"
+            onPress={() => console.log("tapped")}
+            color="secondary"
+          />
+        </View>
       </ImageBackground>
     </>
   );
@@ -42,8 +46,8 @@ const styles = StyleSheet.create({
     height: 100,
     width: 100,
   },
-  button: {
+  buttonContainer: {
     width: "100%",
-    height: 70,
+    padding: 20,
   },
 });
