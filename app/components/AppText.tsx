@@ -1,20 +1,20 @@
 import { ReactNode } from "react";
-import { Text, Platform, StyleSheet } from "react-native";
+import { Platform, StyleSheet, Text } from "react-native";
 
 interface Props {
   children: ReactNode;
+  style?: object;
 }
 
-const AppText = ({ children }: Props) => {
-  return <Text style={styles.text}>{children}</Text>;
+const AppText = ({ children, style }: Props) => {
+  return <Text style={[styles.text, style]}>{children}</Text>;
 };
 
 export default AppText;
 
 const styles = StyleSheet.create({
   text: {
-    color: "red",
-    fontSize: 20,
+    fontSize: 18,
     ...Platform.select({
       ios: {
         fontFamily: "Avenir",

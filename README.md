@@ -61,3 +61,7 @@
 31. **Platform.select**: to apply different styles based on the platform or make platform-specific modules e.g. _AppText.ios.tsx_, _AppText.android.tsx_.
 
 32. use **@expo/vector-icons** to easily set up icons.
+
+33. use **rnfes** for boilerplate react native arrow function with styles. **rnstyle** for styles.
+
+34. If there is some content inside a view, it takes **full width by default**, **but not full height**.
