@@ -65,3 +65,5 @@
 33. use **rnfes** for boilerplate react native arrow function with styles. **rnstyle** for styles.
 
 34. If there is some content inside a view, it takes **full width by default**, **but not full height**.
+
+35. **FlatLists** to display list of data. They take **data** & **renderItem** required props. It is better to set **keyExtractor** prop also.
