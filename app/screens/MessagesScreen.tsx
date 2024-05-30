@@ -1,5 +1,6 @@
 import { FlatList } from "react-native";
 import ListItem from "../components/ListItem";
+import Screen from "../components/Screen";
 
 const messages = [
   {
@@ -18,17 +19,19 @@ const messages = [
 
 const MessagesScreen = () => {
   return (
-    <FlatList
-      data={messages}
-      renderItem={({ item }) => (
-        <ListItem
-          title={item.title}
-          subTitle={item.description}
-          image={item.image}
-        />
-      )}
-      keyExtractor={(message) => message.id.toString()}
-    />
+    <Screen>
+      <FlatList
+        data={messages}
+        renderItem={({ item }) => (
+          <ListItem
+            title={item.title}
+            subTitle={item.description}
+            image={item.image}
+          />
+        )}
+        keyExtractor={(message) => message.id.toString()}
+      />
+    </Screen>
   );
 };
 
