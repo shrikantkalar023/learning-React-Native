@@ -26,6 +26,7 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
     gap: 10,
+    padding: 15,
   },
   image: {
     width: 70,
