@@ -1,3 +1,4 @@
+import { ReactNode } from "react";
 import {
   GestureResponderEvent,
   Image,
@@ -5,6 +6,7 @@ import {
   TouchableHighlight,
   View,
 } from "react-native";
+import Swipeable from "react-native-gesture-handler/Swipeable";
 import colors from "../config/colors";
 import AppText from "./AppText";
 
@@ -13,19 +15,28 @@ interface Props {
   subTitle: string;
   image: number;
   onPress: (event?: GestureResponderEvent) => void;
+  renderRightActions: () => ReactNode;
 }
 
-const ListItem = ({ title, subTitle, image, onPress }: Props) => {
+const ListItem = ({
+  title,
+  subTitle,
+  image,
+  onPress,
+  renderRightActions,
+}: Props) => {
   return (
-    <TouchableHighlight onPress={onPress} underlayColor={colors.light}>
-      <View style={styles.container}>
-        <Image source={image} style={styles.image} />
-        <View>
-          <AppText style={styles.title}>{title}</AppText>
-          <AppText style={styles.subTitle}>{subTitle}</AppText>
+    <Swipeable renderRightActions={renderRightActions}>
+      <TouchableHighlight onPress={onPress} underlayColor={colors.light}>
+        <View style={styles.container}>
+          <Image source={image} style={styles.image} />
+          <View>
+            <AppText style={styles.title}>{title}</AppText>
+            <AppText style={styles.subTitle}>{subTitle}</AppText>
+          </View>
         </View>
-      </View>
-    </TouchableHighlight>
+      </TouchableHighlight>
+    </Swipeable>
   );
 };
 
