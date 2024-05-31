@@ -1,4 +1,10 @@
-import { Image, StyleSheet, View } from "react-native";
+import {
+  GestureResponderEvent,
+  Image,
+  StyleSheet,
+  TouchableHighlight,
+  View,
+} from "react-native";
 import colors from "../config/colors";
 import AppText from "./AppText";
 
@@ -6,17 +12,20 @@ interface Props {
   title: string;
   subTitle: string;
   image: number;
+  onPress: (event?: GestureResponderEvent) => void;
 }
 
-const ListItem = ({ title, subTitle, image }: Props) => {
+const ListItem = ({ title, subTitle, image, onPress }: Props) => {
   return (
-    <View style={styles.container}>
-      <Image source={image} style={styles.image} />
-      <View>
-        <AppText style={styles.title}>{title}</AppText>
-        <AppText style={styles.subTitle}>{subTitle}</AppText>
+    <TouchableHighlight onPress={onPress} underlayColor={colors.light}>
+      <View style={styles.container}>
+        <Image source={image} style={styles.image} />
+        <View>
+          <AppText style={styles.title}>{title}</AppText>
+          <AppText style={styles.subTitle}>{subTitle}</AppText>
+        </View>
       </View>
-    </View>
+    </TouchableHighlight>
   );
 };
 
