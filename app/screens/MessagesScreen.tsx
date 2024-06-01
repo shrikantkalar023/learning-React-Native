@@ -29,6 +29,7 @@ const initialMessages: IMessage[] = [
 
 const MessagesScreen = () => {
   const [messages, setMessages] = useState(initialMessages);
+  const [refreshing, setRefreshing] = useState(false);
 
   const handleDelete = (message: IMessage) => {
     setMessages(messages.filter((m) => m.id !== message.id));
@@ -50,6 +51,17 @@ const MessagesScreen = () => {
         )}
         keyExtractor={(message) => message.id.toString()}
         ItemSeparatorComponent={ListItemSeparator}
+        refreshing={refreshing}
+        onRefresh={() =>
+          setMessages([
+            {
+              id: 3,
+              title: "T3",
+              description: "D3",
+              image: require("../assets/mosh.jpg"),
+            },
+          ])
+        }
       />
     </Screen>
   );
