@@ -1,15 +1,10 @@
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import React from "react";
 import { StyleSheet, View } from "react-native";
+import { IconNames } from "../config/iconNames";
 
 interface Props {
-  name:
-    | "trash-can"
-    | "trash-can-outline"
-    | "close"
-    | "email"
-    | "logout"
-    | "format-list-bulleted";
+  name: IconNames;
   size?: number;
   iconColor?: string;
   backgroundColor?: string;
