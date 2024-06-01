@@ -1,17 +1,23 @@
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import Icon from "./app/components/Icon";
+import ListItem from "./app/components/ListItem";
+import ListItemDeleteAction from "./app/components/ListItemDeleteAction";
 import Screen from "./app/components/Screen";
-import colors from "./app/config/colors";
 
 export default function App() {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <Screen>
-        <Icon
-          name="email"
-          size={50}
-          iconColor={colors.white}
-          backgroundColor={colors.primary}
+        <ListItem
+          title={"title"}
+          subTitle="subTitle"
+          image={<Icon name="format-list-bulleted" />}
+          onPress={() => console.log("list item pressed")}
+          renderRightActions={() => (
+            <ListItemDeleteAction
+              onPress={() => console.log("delete action")}
+            />
+          )}
         />
       </Screen>
     </GestureHandlerRootView>
