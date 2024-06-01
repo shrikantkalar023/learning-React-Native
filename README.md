@@ -69,3 +69,5 @@
 35. **FlatLists** to display list of data. They take **data** & **renderItem** required props. It is better to set **keyExtractor** prop also.
 
 36. We can also apply **padding top** using **expo-constants** instead of Platform.OS & StatusBar.currentHeight.
+
+37. In React Native, **margin collapsing** doesn't happen like in CSS.
