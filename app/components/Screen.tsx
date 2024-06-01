@@ -4,10 +4,11 @@ import { SafeAreaView, StyleSheet } from "react-native";
 
 interface Props {
   children: ReactNode;
+  style?: object;
 }
 
-const Screen = ({ children }: Props) => {
-  return <SafeAreaView style={styles.screen}>{children}</SafeAreaView>;
+const Screen = ({ children, style }: Props) => {
+  return <SafeAreaView style={[styles.screen, style]}>{children}</SafeAreaView>;
 };
 
 export default Screen;

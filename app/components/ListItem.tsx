@@ -13,7 +13,8 @@ import AppText from "./AppText";
 interface Props {
   title: string;
   subTitle?: string;
-  image: number | JSX.Element;
+  image?: number;
+  iconComponent?: JSX.Element;
   onPress?: (event?: GestureResponderEvent) => void;
   renderRightActions?: () => ReactNode;
 }
@@ -22,6 +23,7 @@ const ListItem = ({
   title,
   subTitle,
   image,
+  iconComponent,
   onPress,
   renderRightActions,
 }: Props) => {
@@ -29,11 +31,8 @@ const ListItem = ({
     <Swipeable renderRightActions={renderRightActions}>
       <TouchableHighlight onPress={onPress} underlayColor={colors.light}>
         <View style={styles.container}>
-          {typeof image === "number" ? (
-            <Image source={image} style={styles.image} />
-          ) : (
-            image
-          )}
+          {image && <Image source={image} style={styles.image} />}
+          {iconComponent && iconComponent}
           <View>
             <AppText style={styles.title}>{title}</AppText>
             {subTitle && <AppText style={styles.subTitle}>{subTitle}</AppText>}
@@ -52,6 +51,7 @@ const styles = StyleSheet.create({
     gap: 10,
     padding: 15,
     alignItems: "center",
+    backgroundColor: colors.white,
   },
   image: {
     width: 70,
