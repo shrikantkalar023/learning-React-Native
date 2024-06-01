@@ -1,10 +1,19 @@
 import { GestureHandlerRootView } from "react-native-gesture-handler";
-import MessagesScreen from "./app/screens/MessagesScreen";
+import Icon from "./app/components/Icon";
+import Screen from "./app/components/Screen";
+import colors from "./app/config/colors";
 
 export default function App() {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
-      <MessagesScreen />
+      <Screen>
+        <Icon
+          name="email"
+          size={50}
+          iconColor={colors.white}
+          backgroundColor={colors.primary}
+        />
+      </Screen>
     </GestureHandlerRootView>
   );
 }
