@@ -4,4 +4,5 @@ export type IconNames =
   | "close"
   | "email"
   | "logout"
-  | "format-list-bulleted";
+  | "format-list-bulleted"
+  | "apps";
