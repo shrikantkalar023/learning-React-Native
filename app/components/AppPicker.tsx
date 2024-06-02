@@ -8,13 +8,26 @@ import AppText from "./AppText";
 import PickerItem from "./PickerItem";
 import Screen from "./Screen";
 
+export interface Item {
+  label: string;
+  value: number;
+}
+
 interface Props {
   icon?: IconNames;
   placeholder: string;
-  items: { label: string; value: number }[];
+  items: Item[];
+  selectedItem?: Item;
+  onSelectItem?: (item: Item) => void;
 }
 
-const AppPicker = ({ icon, placeholder, items }: Props) => {
+const AppPicker = ({
+  icon,
+  placeholder,
+  items,
+  selectedItem,
+  onSelectItem,
+}: Props) => {
   const [modalVisible, setModalVisible] = useState(false);
 
   return (
@@ -28,7 +41,9 @@ const AppPicker = ({ icon, placeholder, items }: Props) => {
               color={defaultStyles.colors.medium}
             />
           )}
-          <AppText style={styles.text}>{placeholder}</AppText>
+          <AppText style={styles.text}>
+            {selectedItem ? selectedItem.label : placeholder}
+          </AppText>
           <MaterialCommunityIcons
             name="chevron-down"
             size={20}
@@ -45,7 +60,10 @@ const AppPicker = ({ icon, placeholder, items }: Props) => {
             renderItem={({ item }) => (
               <PickerItem
                 label={item.label}
-                onPress={() => console.log("picker item")}
+                onPress={() => {
+                  setModalVisible(false);
+                  onSelectItem && onSelectItem(item);
+                }}
               />
             )}
           />
