@@ -1,8 +1,16 @@
 import { Formik } from "formik";
 import { Image, StyleSheet } from "react-native";
+import { object, string } from "yup";
 import AppButton from "../components/AppButton";
+import AppText from "../components/AppText";
 import AppTextInput from "../components/AppTextInput";
 import Screen from "../components/Screen";
+
+const validationSchema = object({
+  email: string().email().required().label("Email"),
+  password: string().min(4).required().label("Password"),
+});
+
 const LoginScreen = () => {
   return (
     <Screen style={styles.container}>
@@ -10,8 +18,9 @@ const LoginScreen = () => {
       <Formik
         initialValues={{ email: "", password: "" }}
         onSubmit={(values) => console.log(values)}
+        validationSchema={validationSchema}
       >
-        {({ handleChange, handleSubmit }) => (
+        {({ handleChange, handleSubmit, errors }) => (
           <>
             <AppTextInput
               autoCapitalize="none"
@@ -22,6 +31,7 @@ const LoginScreen = () => {
               textContentType="emailAddress"
               onChangeText={handleChange("email")}
             />
+            <AppText style={{ color: "red" }}>{errors.email}</AppText>
             <AppTextInput
               autoCapitalize="none"
               autoCorrect={false}
@@ -31,6 +41,7 @@ const LoginScreen = () => {
               textContentType="password"
               onChangeText={handleChange("password")}
             />
+            <AppText style={{ color: "red" }}>{errors.password}</AppText>
             <AppButton title="Login" onPress={handleSubmit} />
           </>
         )}
