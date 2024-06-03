@@ -6,4 +6,5 @@ export type IconNames =
   | "logout"
   | "format-list-bulleted"
   | "apps"
-  | "lock";
+  | "lock"
+  | "account";
