@@ -2,8 +2,8 @@ import { Formik } from "formik";
 import { Image, StyleSheet } from "react-native";
 import { object, string } from "yup";
 import AppButton from "../components/AppButton";
-import AppText from "../components/AppText";
 import AppTextInput from "../components/AppTextInput";
+import ErrorMessage from "../components/ErrorMessage";
 import Screen from "../components/Screen";
 
 const validationSchema = object({
@@ -31,7 +31,7 @@ const LoginScreen = () => {
               textContentType="emailAddress"
               onChangeText={handleChange("email")}
             />
-            <AppText style={{ color: "red" }}>{errors.email}</AppText>
+            <ErrorMessage error={errors?.email} />
             <AppTextInput
               autoCapitalize="none"
               autoCorrect={false}
@@ -41,7 +41,7 @@ const LoginScreen = () => {
               textContentType="password"
               onChangeText={handleChange("password")}
             />
-            <AppText style={{ color: "red" }}>{errors.password}</AppText>
+            <ErrorMessage error={errors?.password} />
             <AppButton title="Login" onPress={handleSubmit} />
           </>
         )}
