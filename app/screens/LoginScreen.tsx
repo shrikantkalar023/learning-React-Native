@@ -1,6 +1,6 @@
-import { Formik } from "formik";
 import { Image, StyleSheet } from "react-native";
 import { object, string } from "yup";
+import AppForm from "../components/AppForm";
 import AppFormField from "../components/AppFormField";
 import AppFormSubmitButton from "../components/AppFormSubmitButton";
 import Screen from "../components/Screen";
@@ -14,35 +14,31 @@ const LoginScreen = () => {
   return (
     <Screen style={styles.container}>
       <Image style={styles.logo} source={require("../assets/logo-red.png")} />
-      <Formik
+      <AppForm
         initialValues={{ email: "", password: "" }}
         onSubmit={(values) => console.log(values)}
         validationSchema={validationSchema}
       >
-        {({}) => (
-          <>
-            <AppFormField
-              name="email"
-              autoCapitalize="none"
-              autoCorrect={false}
-              icon="email"
-              keyboardType="email-address"
-              placeholder="Email"
-              textContentType="emailAddress"
-            />
-            <AppFormField
-              name="password"
-              autoCapitalize="none"
-              autoCorrect={false}
-              icon="lock"
-              placeholder="Password"
-              secureTextEntry
-              textContentType="password"
-            />
-            <AppFormSubmitButton title="Login" />
-          </>
-        )}
-      </Formik>
+        <AppFormField
+          name="email"
+          autoCapitalize="none"
+          autoCorrect={false}
+          icon="email"
+          keyboardType="email-address"
+          placeholder="Email"
+          textContentType="emailAddress"
+        />
+        <AppFormField
+          name="password"
+          autoCapitalize="none"
+          autoCorrect={false}
+          icon="lock"
+          placeholder="Password"
+          secureTextEntry
+          textContentType="password"
+        />
+        <AppFormSubmitButton title="Login" />
+      </AppForm>
     </Screen>
   );
 };
