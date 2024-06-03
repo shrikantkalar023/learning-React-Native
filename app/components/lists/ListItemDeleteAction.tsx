@@ -2,7 +2,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import React from "react";
 import { StyleSheet, View } from "react-native";
 import { TouchableWithoutFeedback } from "react-native-gesture-handler";
-import colors from "../config/colors";
+import colors from "../../config/colors";
 
 interface Props {
   onPress: () => void;
