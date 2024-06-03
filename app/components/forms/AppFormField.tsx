@@ -1,6 +1,6 @@
 import { useFormikContext } from "formik";
-import AppTextInput, { AppTextInputProps } from "./AppTextInput";
-import ErrorMessage from "./ErrorMessage";
+import AppTextInput, { AppTextInputProps } from "../AppTextInput";
+import ErrorMessage from "../forms/ErrorMessage";
 
 interface Props extends AppTextInputProps {
   name: string;

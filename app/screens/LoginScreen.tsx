@@ -1,8 +1,10 @@
 import { Image, StyleSheet } from "react-native";
 import { object, string } from "yup";
-import AppForm from "../components/AppForm";
-import AppFormField from "../components/AppFormField";
-import AppFormSubmitButton from "../components/AppFormSubmitButton";
+import {
+  AppForm,
+  AppFormField,
+  AppFormSubmitButton,
+} from "../components/forms";
 import Screen from "../components/Screen";
 
 const validationSchema = object({

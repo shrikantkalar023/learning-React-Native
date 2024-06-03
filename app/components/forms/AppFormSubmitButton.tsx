@@ -1,5 +1,5 @@
 import { useFormikContext } from "formik";
-import AppButton from "./AppButton";
+import AppButton from "../AppButton";
 
 interface Props {
   title: string;
