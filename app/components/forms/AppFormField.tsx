@@ -1,5 +1,5 @@
 import { Controller, useFormContext } from "react-hook-form";
-import AppTextInput, { AppTextInputProps } from "./AppTextInput";
+import AppTextInput, { AppTextInputProps } from "../AppTextInput";
 import ErrorMessage from "./ErrorMessage";
 
 interface Props extends AppTextInputProps {

@@ -2,8 +2,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { FormProvider, useForm } from "react-hook-form";
 import { Image, StyleSheet } from "react-native";
 import { z } from "zod";
-import AppFormField from "../components/AppFormField";
-import AppFormSubmitButton from "../components/AppFormSubmitButton";
+import { AppFormField, AppFormSubmitButton } from "../components/forms";
 import Screen from "../components/Screen";
 
 const LoginScreen = () => {

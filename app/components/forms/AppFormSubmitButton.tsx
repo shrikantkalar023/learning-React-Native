@@ -1,6 +1,6 @@
 import { useFormContext } from "react-hook-form";
 
-import AppButton from "./AppButton";
+import AppButton from "../AppButton";
 
 interface Props {
   title: string;
