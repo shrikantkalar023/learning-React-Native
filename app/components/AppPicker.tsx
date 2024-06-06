@@ -8,17 +8,18 @@ import AppText from "./AppText";
 import PickerItem from "./PickerItem";
 import Screen from "./Screen";
 
-export interface Item {
+export interface AppPickerItem {
   label: string;
   value: number;
 }
 
-interface Props {
+export interface AppPickerProps {
   icon?: IconNames;
   placeholder: string;
-  items: Item[];
-  selectedItem?: Item;
-  onSelectItem?: (item: Item) => void;
+  items: AppPickerItem[];
+  selectedItem?: AppPickerItem;
+  onSelectItem?: (item: AppPickerItem) => void;
+  onButtonPress?: () => void;
 }
 
 const AppPicker = ({
@@ -27,12 +28,18 @@ const AppPicker = ({
   items,
   selectedItem,
   onSelectItem,
-}: Props) => {
+  onButtonPress,
+}: AppPickerProps) => {
   const [modalVisible, setModalVisible] = useState(false);
 
   return (
     <>
-      <TouchableWithoutFeedback onPress={() => setModalVisible(true)}>
+      <TouchableWithoutFeedback
+        onPress={() => {
+          setModalVisible(true);
+          onButtonPress?.();
+        }}
+      >
         <View style={styles.container}>
           {icon && (
             <MaterialCommunityIcons
@@ -41,7 +48,12 @@ const AppPicker = ({
               color={defaultStyles.colors.medium}
             />
           )}
-          <AppText style={styles.text}>
+          <AppText
+            style={[
+              styles.text,
+              !selectedItem && { color: defaultStyles.colors.medium },
+            ]}
+          >
             {selectedItem ? selectedItem.label : placeholder}
           </AppText>
           <MaterialCommunityIcons
