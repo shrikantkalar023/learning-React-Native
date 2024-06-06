@@ -3,11 +3,11 @@ import { StyleSheet, TextInput, TextInputProps, View } from "react-native";
 import { IconNames } from "../config/iconNames";
 import defaultStyles from "../config/styles";
 
-interface Props extends TextInputProps {
+export interface AppTextInputProps extends TextInputProps {
   icon?: IconNames;
 }
 
-const AppTextInput = ({ icon, ...textInputProps }: Props) => {
+const AppTextInput = ({ icon, ...textInputProps }: AppTextInputProps) => {
   return (
     <View style={styles.container}>
       {icon && (
