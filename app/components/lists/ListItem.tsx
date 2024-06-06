@@ -1,3 +1,4 @@
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { ReactNode } from "react";
 import {
   GestureResponderEvent,
@@ -33,10 +34,15 @@ const ListItem = ({
         <View style={styles.container}>
           {image && <Image source={image} style={styles.image} />}
           {iconComponent && iconComponent}
-          <View>
+          <View style={styles.detailsContainer}>
             <AppText style={styles.title}>{title}</AppText>
             {subTitle && <AppText style={styles.subTitle}>{subTitle}</AppText>}
           </View>
+          <MaterialCommunityIcons
+            name="chevron-right"
+            size={25}
+            color={colors.medium}
+          />
         </View>
       </TouchableHighlight>
     </Swipeable>
@@ -57,6 +63,9 @@ const styles = StyleSheet.create({
     width: 70,
     height: 70,
     borderRadius: 35,
+  },
+  detailsContainer: {
+    flex: 1,
   },
   title: {
     fontWeight: "500",
