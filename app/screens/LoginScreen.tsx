@@ -2,8 +2,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { FormProvider, useForm } from "react-hook-form";
 import { Image, StyleSheet } from "react-native";
 import { z } from "zod";
-import AppButton from "../components/AppButton";
 import AppFormField from "../components/AppFormField";
+import AppFormSubmitButton from "../components/AppFormSubmitButton";
 import Screen from "../components/Screen";
 
 const LoginScreen = () => {
@@ -18,8 +18,6 @@ const LoginScreen = () => {
   type FormData = z.infer<typeof schema>;
 
   const methods = useForm<FormData>({ resolver: zodResolver(schema) });
-
-  const onSubmit = methods.handleSubmit((data) => console.log(data));
 
   return (
     <Screen style={styles.container}>
@@ -43,7 +41,7 @@ const LoginScreen = () => {
           textContentType="password"
           name="password"
         />
-        <AppButton title="Login" onPress={onSubmit} />
+        <AppFormSubmitButton title="Login" />
       </FormProvider>
     </Screen>
   );
