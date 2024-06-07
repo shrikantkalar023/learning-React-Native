@@ -1,16 +1,17 @@
 import { StyleSheet } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { AppPickerItem } from "./AppPicker";
 import AppText from "./AppText";
 
-interface Props {
-  label: string;
+export interface PickerItemProps {
+  item: AppPickerItem;
   onPress: () => void;
 }
 
-const PickerItem = ({ label, onPress }: Props) => {
+const PickerItem = ({ item, onPress }: PickerItemProps) => {
   return (
     <TouchableOpacity onPress={onPress}>
-      <AppText style={styles.text}>{label}</AppText>
+      <AppText style={styles.text}>{item.label}</AppText>
     </TouchableOpacity>
   );
 };

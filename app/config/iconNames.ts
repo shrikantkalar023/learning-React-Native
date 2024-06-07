@@ -7,4 +7,13 @@ export type IconNames =
   | "format-list-bulleted"
   | "apps"
   | "lock"
-  | "account";
+  | "account"
+  | "floor-lamp"
+  | "car"
+  | "camera"
+  | "cards"
+  | "shoe-heel"
+  | "basketball"
+  | "headphones"
+  | "book-open-variant"
+  | "application";

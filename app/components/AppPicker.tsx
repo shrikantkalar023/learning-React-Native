@@ -12,12 +12,14 @@ import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 import { IconNames } from "../config/iconNames";
 import defaultStyles from "../config/styles";
 import AppText from "./AppText";
-import PickerItem from "./PickerItem";
+import PickerItem, { PickerItemProps } from "./PickerItem";
 import Screen from "./Screen";
 
 export interface AppPickerItem {
   label: string;
   value: number;
+  icon?: IconNames;
+  backgroundColor?: string;
 }
 
 export interface AppPickerProps {
@@ -28,6 +30,8 @@ export interface AppPickerProps {
   onSelectItem?: (item: AppPickerItem) => void;
   onButtonPress?: () => void;
   width?: DimensionValue;
+  numberOfColumns?: number;
+  PickerItemComponent?: (Props: PickerItemProps) => JSX.Element;
 }
 
 const AppPicker = ({
@@ -38,6 +42,8 @@ const AppPicker = ({
   onSelectItem,
   onButtonPress,
   width,
+  numberOfColumns,
+  PickerItemComponent = PickerItem,
 }: AppPickerProps) => {
   const [modalVisible, setModalVisible] = useState(false);
 
@@ -78,9 +84,10 @@ const AppPicker = ({
           <FlatList
             data={items}
             keyExtractor={(item) => item.value.toString()}
+            numColumns={numberOfColumns}
             renderItem={({ item }) => (
-              <PickerItem
-                label={item.label}
+              <PickerItemComponent
+                item={item}
                 onPress={() => {
                   setModalVisible(false);
                   onSelectItem && onSelectItem(item);
