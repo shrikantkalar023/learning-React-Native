@@ -2,8 +2,7 @@ import { useFormikContext } from "formik";
 import AppPicker, { AppPickerItem, AppPickerProps } from "../AppPicker";
 import ErrorMessage from "./ErrorMessage";
 
-interface Props
-  extends Omit<AppPickerProps, "onSelectItem" | "selectedItem" | "onFoucs"> {
+interface Props extends Omit<AppPickerProps, "onSelectItem" | "selectedItem"> {
   name: string;
 }
 

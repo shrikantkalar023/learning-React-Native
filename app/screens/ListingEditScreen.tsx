@@ -14,7 +14,6 @@ const categories = [
   { label: "Camera", value: 3 },
 ];
 
-// TODO: make category object
 const validationSchema = object({
   title: string().required().min(1).label("Title"),
   price: number().required().min(1).max(10_000).label("Price"),
@@ -47,11 +46,13 @@ const ListingEditScreen = () => {
           autoCapitalize="none"
           keyboardType="number-pad"
           maxLength={8}
+          width={120}
         />
         <AppFormPicker
           name="category"
           placeholder="Category"
           items={categories}
+          width={"50%"}
         />
         <AppFormField
           name="description"

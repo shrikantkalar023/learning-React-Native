@@ -1,6 +1,13 @@
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useState } from "react";
-import { Button, FlatList, Modal, StyleSheet, View } from "react-native";
+import {
+  Button,
+  DimensionValue,
+  FlatList,
+  Modal,
+  StyleSheet,
+  View,
+} from "react-native";
 import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 import { IconNames } from "../config/iconNames";
 import defaultStyles from "../config/styles";
@@ -20,6 +27,7 @@ export interface AppPickerProps {
   selectedItem?: AppPickerItem;
   onSelectItem?: (item: AppPickerItem) => void;
   onButtonPress?: () => void;
+  width?: DimensionValue;
 }
 
 const AppPicker = ({
@@ -29,6 +37,7 @@ const AppPicker = ({
   selectedItem,
   onSelectItem,
   onButtonPress,
+  width,
 }: AppPickerProps) => {
   const [modalVisible, setModalVisible] = useState(false);
 
@@ -40,7 +49,7 @@ const AppPicker = ({
           onButtonPress?.();
         }}
       >
-        <View style={styles.container}>
+        <View style={[styles.container, { width }]}>
           {icon && (
             <MaterialCommunityIcons
               name={icon}
