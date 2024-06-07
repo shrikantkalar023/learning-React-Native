@@ -8,17 +8,17 @@ import AppText from "./AppText";
 import PickerItem from "./PickerItem";
 import Screen from "./Screen";
 
-export interface Item {
+export interface PickerItem {
   label: string;
   value: number;
 }
 
-interface Props {
+export interface AppPickerProps {
   icon?: IconNames;
   placeholder: string;
-  items: Item[];
-  selectedItem?: Item;
-  onSelectItem?: (item: Item) => void;
+  items: PickerItem[];
+  selectedItem?: PickerItem;
+  onSelectItem?: (item: PickerItem) => void;
 }
 
 const AppPicker = ({
@@ -27,7 +27,7 @@ const AppPicker = ({
   items,
   selectedItem,
   onSelectItem,
-}: Props) => {
+}: AppPickerProps) => {
   const [modalVisible, setModalVisible] = useState(false);
 
   return (
