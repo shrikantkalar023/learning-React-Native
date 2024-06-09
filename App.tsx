@@ -1,37 +1,25 @@
-import * as ImagePicker from "expo-image-picker";
+import { ImagePickerAsset } from "expo-image-picker";
 import { useState } from "react";
-import { Button, Image } from "react-native";
+import ImageInputList from "./app/components/ImageInputList";
 import Screen from "./app/components/Screen";
 
 export default function App() {
-  const [imageUri, setImageUri] = useState<string>();
+  const [imageAssets, setImageAssets] = useState<ImagePickerAsset[]>([]);
 
-  const selectImage = async () => {
-    // No permissions request is necessary for launching the image library
+  const handleAddImage = (newImageAssets: ImagePickerAsset[]) =>
+    setImageAssets([...imageAssets, ...newImageAssets]);
 
-    try {
-      let result = await ImagePicker.launchImageLibraryAsync();
-
-      if (!result.canceled) {
-        setImageUri(result.assets[0].uri);
-      }
-    } catch (error) {
-      console.log("Error selecting image", error);
-    }
+  const handleRemoveImage = (uri: string) => {
+    setImageAssets(imageAssets?.filter((imageAsset) => imageAsset.uri !== uri));
   };
 
   return (
-    <Screen style={{ flex: 1 }}>
-      <Button title="Pick an image from camera roll" onPress={selectImage} />
-      {imageUri && (
-        <Image
-          source={{ uri: imageUri }}
-          style={{
-            width: 200,
-            height: 200,
-          }}
-        />
-      )}
+    <Screen>
+      <ImageInputList
+        imageAssets={imageAssets}
+        onAddImage={handleAddImage}
+        onRemoveImage={handleRemoveImage}
+      />
     </Screen>
   );
 }
