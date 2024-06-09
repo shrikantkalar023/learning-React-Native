@@ -1,6 +1,7 @@
 import { ImagePickerAsset } from "expo-image-picker";
-import { StyleSheet, View } from "react-native";
+import { ScrollView, StyleSheet, View } from "react-native";
 
+import { useRef } from "react";
 import ImageInput, { ImageInputProps } from "./ImageInput";
 
 interface Props extends Omit<ImageInputProps, "imageUri"> {
@@ -8,16 +9,27 @@ interface Props extends Omit<ImageInputProps, "imageUri"> {
 }
 
 const ImageInputList = ({ imageAssets, ...ImageInputProps }: Props) => {
+  const scrollViewRef = useRef<ScrollView>(null);
+
   return (
-    <View style={styles.container}>
-      {imageAssets?.map((imageAsset) => (
-        <ImageInput
-          key={imageAsset.uri}
-          imageUri={imageAsset.uri}
-          {...ImageInputProps}
-        />
-      ))}
-      <ImageInput {...ImageInputProps} />
+    <View>
+      <ScrollView
+        horizontal
+        style={{ backgroundColor: "yellow" }}
+        ref={scrollViewRef}
+        onContentSizeChange={() => scrollViewRef.current?.scrollToEnd()}
+      >
+        <View style={styles.container}>
+          {imageAssets?.map((imageAsset) => (
+            <ImageInput
+              key={imageAsset.uri}
+              imageUri={imageAsset.uri}
+              {...ImageInputProps}
+            />
+          ))}
+          <ImageInput {...ImageInputProps} />
+        </View>
+      </ScrollView>
     </View>
   );
 };
@@ -28,6 +40,5 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
     gap: 10,
-    flexWrap: "wrap",
   },
 });
