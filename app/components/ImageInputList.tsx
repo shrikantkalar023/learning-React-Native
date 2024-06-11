@@ -15,7 +15,6 @@ const ImageInputList = ({ imageAssets, ...ImageInputProps }: Props) => {
     <View>
       <ScrollView
         horizontal
-        style={{ backgroundColor: "yellow" }}
         ref={scrollViewRef}
         onContentSizeChange={() => scrollViewRef.current?.scrollToEnd()}
       >
