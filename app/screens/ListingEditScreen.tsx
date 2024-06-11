@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { number, object, string } from "yup";
+import { array, number, object, string } from "yup";
 import { AppPickerItem } from "../components/AppPicker";
 import CategoryPickerItem from "../components/CategoryPickerItem";
 import {
@@ -7,6 +7,7 @@ import {
   AppFormField,
   AppFormSubmitButton,
 } from "../components/forms";
+import AppFormImagePicker from "../components/forms/AppFormImagePicker";
 import AppFormPicker from "../components/forms/AppFormPicker";
 import Screen from "../components/Screen";
 
@@ -77,6 +78,7 @@ const validationSchema = object({
   })
     .required()
     .label("Category"),
+  images: array().min(1, "Please select at least one image."),
 });
 
 const ListingEditScreen = () => {
@@ -88,10 +90,12 @@ const ListingEditScreen = () => {
           price: "",
           description: "",
           category: null,
+          images: [],
         }}
         onSubmit={(values) => console.log(values)}
         validationSchema={validationSchema}
       >
+        <AppFormImagePicker name="images" />
         <AppFormField name="title" placeholder="Title" maxLength={255} />
         <AppFormField
           name="price"
