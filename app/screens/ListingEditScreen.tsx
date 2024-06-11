@@ -1,5 +1,6 @@
 import { StyleSheet } from "react-native";
 import { array, number, object, string } from "yup";
+
 import { AppPickerItem } from "../components/AppPicker";
 import CategoryPickerItem from "../components/CategoryPickerItem";
 import {
@@ -10,6 +11,7 @@ import {
 import AppFormImagePicker from "../components/forms/AppFormImagePicker";
 import AppFormPicker from "../components/forms/AppFormPicker";
 import Screen from "../components/Screen";
+import useLocation from "../hooks/useLocation";
 
 const categories: AppPickerItem[] = [
   {
@@ -82,6 +84,8 @@ const validationSchema = object({
 });
 
 const ListingEditScreen = () => {
+  const location = useLocation();
+
   return (
     <Screen style={styles.container}>
       <AppForm
@@ -92,7 +96,7 @@ const ListingEditScreen = () => {
           category: null,
           images: [],
         }}
-        onSubmit={(values) => console.log(values)}
+        onSubmit={(values) => console.log(values, "location:", location)}
         validationSchema={validationSchema}
       >
         <AppFormImagePicker name="images" />
