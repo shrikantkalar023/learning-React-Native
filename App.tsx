@@ -1,14 +1,34 @@
-import { NavigationContainer } from "@react-navigation/native";
+import {
+  NavigationContainer,
+  NavigationProp,
+  useNavigation,
+} from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { Text } from "react-native";
+import { Button, Text } from "react-native";
 
 import Screen from "./app/components/Screen";
 
-const Tweets = () => (
-  <Screen>
-    <Text>Tweets</Text>
-  </Screen>
-);
+type RootStackParamList = {
+  Tweets: undefined;
+  TweetDetails: undefined;
+};
+
+const Link = () => {
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
+
+  return (
+    <Button title="Click" onPress={() => navigation.navigate("TweetDetails")} />
+  );
+};
+
+const Tweets = () => {
+  return (
+    <Screen>
+      <Text>Tweets</Text>
+      <Link />
+    </Screen>
+  );
+};
 
 const TweetDetails = () => (
   <Screen>

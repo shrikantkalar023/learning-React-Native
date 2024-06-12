@@ -71,3 +71,7 @@
 36. We can also apply **padding top** using **expo-constants** instead of Platform.OS & StatusBar.currentHeight.
 
 37. In React Native, **margin collapsing** doesn't happen like in CSS.
+
+38. The component in the Stack.Screen receives a **navigation prop** which has a **navigate()** method to navigate to another screen.
+
+39. **navigation.push()** adds a new screen to the stack.
