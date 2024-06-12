@@ -1,3 +1,4 @@
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import {
   NavigationContainer,
   NavigationProp,
@@ -14,6 +15,8 @@ import Screen from "./app/components/Screen";
 type RootStackParamList = {
   Tweets: undefined;
   TweetDetails: { id: number };
+  Feed: undefined;
+  Account: undefined;
 };
 
 const Link = () => {
@@ -69,10 +72,25 @@ const StackNavigator = () => (
   </Stack.Navigator>
 );
 
+const Account = () => (
+  <Screen>
+    <Text>Account</Text>
+  </Screen>
+);
+
+const Tab = createBottomTabNavigator<RootStackParamList>();
+const TabNavigator = () => (
+  <Tab.Navigator>
+    <Tab.Screen name="Feed" component={Tweets}></Tab.Screen>
+    <Tab.Screen name="Account" component={Account}></Tab.Screen>
+  </Tab.Navigator>
+);
+
 export default function App() {
   return (
     <NavigationContainer>
-      <StackNavigator />
+      {/* <StackNavigator /> */}
+      <TabNavigator />
     </NavigationContainer>
   );
 }
