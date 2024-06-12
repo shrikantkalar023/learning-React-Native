@@ -49,7 +49,12 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 const StackNavigator = () => (
   <Stack.Navigator>
     <Stack.Screen name="Tweets" component={Tweets} />
-    <Stack.Screen name="TweetDetails" component={TweetDetails} />
+    <Stack.Screen
+      name="TweetDetails"
+      component={TweetDetails}
+      // options={{ title: "Tweet Details" }}
+      options={({ route }) => ({ title: route.params.id.toString() })}
+    />
   </Stack.Navigator>
 );
 
