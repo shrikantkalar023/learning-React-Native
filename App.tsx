@@ -10,6 +10,7 @@ import {
 } from "@react-navigation/native-stack";
 import { Button, Text } from "react-native";
 
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 import Screen from "./app/components/Screen";
 
 type RootStackParamList = {
@@ -80,8 +81,23 @@ const Account = () => (
 
 const Tab = createBottomTabNavigator<RootStackParamList>();
 const TabNavigator = () => (
-  <Tab.Navigator>
-    <Tab.Screen name="Feed" component={Tweets}></Tab.Screen>
+  <Tab.Navigator
+    screenOptions={{
+      tabBarActiveBackgroundColor: "tomato",
+      tabBarActiveTintColor: "white",
+      tabBarInactiveBackgroundColor: "#eee",
+      tabBarInactiveTintColor: "black",
+    }}
+  >
+    <Tab.Screen
+      name="Feed"
+      component={Tweets}
+      options={{
+        tabBarIcon: ({ size, color }) => (
+          <MaterialCommunityIcons name="home" size={size} color={color} />
+        ),
+      }}
+    ></Tab.Screen>
     <Tab.Screen name="Account" component={Account}></Tab.Screen>
   </Tab.Navigator>
 );
@@ -89,7 +105,6 @@ const TabNavigator = () => (
 export default function App() {
   return (
     <NavigationContainer>
-      {/* <StackNavigator /> */}
       <TabNavigator />
     </NavigationContainer>
   );
