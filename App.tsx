@@ -3,21 +3,27 @@ import {
   NavigationProp,
   useNavigation,
 } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import {
+  createNativeStackNavigator,
+  NativeStackScreenProps,
+} from "@react-navigation/native-stack";
 import { Button, Text } from "react-native";
 
 import Screen from "./app/components/Screen";
 
 type RootStackParamList = {
   Tweets: undefined;
-  TweetDetails: undefined;
+  TweetDetails: { id: number };
 };
 
 const Link = () => {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 
   return (
-    <Button title="Click" onPress={() => navigation.navigate("TweetDetails")} />
+    <Button
+      title="View Tweet"
+      onPress={() => navigation.navigate("TweetDetails", { id: 1 })}
+    />
   );
 };
 
@@ -30,13 +36,16 @@ const Tweets = () => {
   );
 };
 
-const TweetDetails = () => (
+interface TweetDetailsProps
+  extends NativeStackScreenProps<RootStackParamList, "TweetDetails"> {}
+
+const TweetDetails = ({ route, navigation }: TweetDetailsProps) => (
   <Screen>
-    <Text>Tweet Details</Text>
+    <Text>Tweet Details {route.params.id}</Text>
   </Screen>
 );
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<RootStackParamList>();
 const StackNavigator = () => (
   <Stack.Navigator>
     <Stack.Screen name="Tweets" component={Tweets} />
