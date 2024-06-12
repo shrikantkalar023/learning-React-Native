@@ -47,12 +47,23 @@ const TweetDetails = ({ route, navigation }: TweetDetailsProps) => (
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 const StackNavigator = () => (
-  <Stack.Navigator>
-    <Stack.Screen name="Tweets" component={Tweets} />
+  <Stack.Navigator
+    screenOptions={{
+      headerStyle: { backgroundColor: "dodgerblue" },
+      headerTintColor: "white",
+    }}
+  >
+    <Stack.Screen
+      name="Tweets"
+      component={Tweets}
+      options={{
+        headerStyle: { backgroundColor: "tomato" },
+        headerTintColor: "white",
+      }}
+    />
     <Stack.Screen
       name="TweetDetails"
       component={TweetDetails}
-      // options={{ title: "Tweet Details" }}
       options={({ route }) => ({ title: route.params.id.toString() })}
     />
   </Stack.Navigator>
