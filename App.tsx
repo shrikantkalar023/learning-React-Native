@@ -1,11 +1,33 @@
-import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { Text } from "react-native";
 
-import ListingEditScreen from "./app/screens/ListingEditScreen";
+import Screen from "./app/components/Screen";
+
+const Tweets = () => (
+  <Screen>
+    <Text>Tweets</Text>
+  </Screen>
+);
+
+const TweetDetails = () => (
+  <Screen>
+    <Text>Tweet Details</Text>
+  </Screen>
+);
+
+const Stack = createNativeStackNavigator();
+const StackNavigator = () => (
+  <Stack.Navigator>
+    <Stack.Screen name="Tweets" component={Tweets} />
+    <Stack.Screen name="TweetDetails" component={TweetDetails} />
+  </Stack.Navigator>
+);
 
 export default function App() {
   return (
-    <GestureHandlerRootView style={{ flex: 1 }}>
-      <ListingEditScreen />
-    </GestureHandlerRootView>
+    <NavigationContainer>
+      <StackNavigator />
+    </NavigationContainer>
   );
 }
