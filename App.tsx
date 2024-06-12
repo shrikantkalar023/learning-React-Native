@@ -10,7 +10,6 @@ import {
 } from "@react-navigation/native-stack";
 import { Button, Text } from "react-native";
 
-import { MaterialCommunityIcons } from "@expo/vector-icons";
 import Screen from "./app/components/Screen";
 
 type RootStackParamList = {
@@ -50,26 +49,10 @@ const TweetDetails = ({ route, navigation }: TweetDetailsProps) => (
 );
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
-const StackNavigator = () => (
-  <Stack.Navigator
-    screenOptions={{
-      headerStyle: { backgroundColor: "dodgerblue" },
-      headerTintColor: "white",
-    }}
-  >
-    <Stack.Screen
-      name="Tweets"
-      component={Tweets}
-      options={{
-        headerStyle: { backgroundColor: "tomato" },
-        headerTintColor: "white",
-      }}
-    />
-    <Stack.Screen
-      name="TweetDetails"
-      component={TweetDetails}
-      options={({ route }) => ({ title: route.params.id.toString() })}
-    />
+const FeedNavigator = () => (
+  <Stack.Navigator>
+    <Stack.Screen name="Tweets" component={Tweets} />
+    <Stack.Screen name="TweetDetails" component={TweetDetails} />
   </Stack.Navigator>
 );
 
@@ -81,23 +64,8 @@ const Account = () => (
 
 const Tab = createBottomTabNavigator<RootStackParamList>();
 const TabNavigator = () => (
-  <Tab.Navigator
-    screenOptions={{
-      tabBarActiveBackgroundColor: "tomato",
-      tabBarActiveTintColor: "white",
-      tabBarInactiveBackgroundColor: "#eee",
-      tabBarInactiveTintColor: "black",
-    }}
-  >
-    <Tab.Screen
-      name="Feed"
-      component={Tweets}
-      options={{
-        tabBarIcon: ({ size, color }) => (
-          <MaterialCommunityIcons name="home" size={size} color={color} />
-        ),
-      }}
-    ></Tab.Screen>
+  <Tab.Navigator>
+    <Tab.Screen name="Feed" component={FeedNavigator}></Tab.Screen>
     <Tab.Screen name="Account" component={Account}></Tab.Screen>
   </Tab.Navigator>
 );

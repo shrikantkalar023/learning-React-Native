@@ -75,3 +75,5 @@
 38. The component in the Stack.Screen receives a **navigation prop** which has a **navigate()** method to navigate to another screen.
 
 39. **navigation.push()** adds a new screen to the stack.
+
+40. Each **tab navigator** should have its own stack navigation state i.e. its own stack navigator.
