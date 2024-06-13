@@ -11,6 +11,7 @@ import {
 import { Button, Text } from "react-native";
 
 import Screen from "./app/components/Screen";
+import AuthNavigator from "./app/navigation/AuthNavigator";
 
 type RootStackParamList = {
   Tweets: undefined;
@@ -73,7 +74,7 @@ const TabNavigator = () => (
 export default function App() {
   return (
     <NavigationContainer>
-      <TabNavigator />
+      <AuthNavigator />
     </NavigationContainer>
   );
 }
