@@ -1,6 +1,7 @@
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+
 import ListingEditScreen from "../screens/ListingEditScreen";
 import AccountNavigator from "./AccountNavigator";
 import FeedNavigator from "./FeedNavigator";
@@ -27,7 +28,9 @@ const AppNavigator = () => (
     <Tab.Screen
       name="ListingEdit"
       component={ListingEditScreen}
-      options={({ navigation }) => ({
+      options={({
+        navigation,
+      }: NativeStackScreenProps<AppNavigatorParams, "ListingEdit">) => ({
         tabBarButton: () => (
           <NewListingButton
             onPress={() => navigation.navigate("ListingEdit")}
