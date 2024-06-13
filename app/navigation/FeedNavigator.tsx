@@ -9,13 +9,11 @@ export type FeedNavigatorParams = {
 
 const Stack = createNativeStackNavigator<FeedNavigatorParams>();
 const FeedNavigator = () => (
-  <Stack.Navigator screenOptions={{ presentation: "modal" }}>
+  <Stack.Navigator
+    screenOptions={{ presentation: "modal", headerShown: false }}
+  >
     <Stack.Screen name="Listings" component={ListingScreen} />
-    <Stack.Screen
-      name="ListingDetails"
-      component={ListingDetailsScreen}
-      options={{ headerShown: false }}
-    />
+    <Stack.Screen name="ListingDetails" component={ListingDetailsScreen} />
   </Stack.Navigator>
 );
 export default FeedNavigator;
