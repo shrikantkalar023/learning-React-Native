@@ -1,7 +1,7 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
-import AccountScreen from "../screens/AccountScreen";
 import ListingEditScreen from "../screens/ListingEditScreen";
+import AccountNavigator from "./AccountNavigator";
 import FeedNavigator from "./FeedNavigator";
 
 export type AppNavigatorParams = {
@@ -15,7 +15,7 @@ const AppNavigator = () => (
   <Tab.Navigator screenOptions={{ headerShown: false }}>
     <Tab.Screen name="Feed" component={FeedNavigator}></Tab.Screen>
     <Tab.Screen name="ListingEdit" component={ListingEditScreen}></Tab.Screen>
-    <Tab.Screen name="Account" component={AccountScreen}></Tab.Screen>
+    <Tab.Screen name="Account" component={AccountNavigator}></Tab.Screen>
   </Tab.Navigator>
 );
 

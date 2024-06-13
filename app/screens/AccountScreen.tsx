@@ -1,3 +1,4 @@
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { FlatList, StyleSheet, View } from "react-native";
 import Icon from "../components/Icon";
 import ListItem from "../components/lists/ListItem";
@@ -5,6 +6,7 @@ import ListItemSeparator from "../components/lists/ListItemSeparator";
 import Screen from "../components/Screen";
 import colors from "../config/colors";
 import { IconNames } from "../config/iconNames";
+import { AccountNavigatorParams } from "../navigation/AccountNavigator";
 
 const menuItems = [
   {
@@ -20,10 +22,13 @@ const menuItems = [
       name: "email",
       backgroundColor: colors.secondary,
     },
+    targetScreen: "Messages",
   },
 ];
+interface Props
+  extends NativeStackScreenProps<AccountNavigatorParams, "AccountScreen"> {}
 
-const AccountScreen = () => {
+const AccountScreen = ({ navigation }: Props) => {
   return (
     <Screen style={styles.screen}>
       <View style={styles.container}>
@@ -39,6 +44,10 @@ const AccountScreen = () => {
           renderItem={({ item }) => (
             <ListItem
               title={item.title}
+              onPress={() => {
+                item.targetScreen === "Messages" &&
+                  navigation.navigate(item.targetScreen);
+              }}
               iconComponent={
                 <Icon
                   name={item.icon.name as IconNames}
