@@ -2,18 +2,18 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import AccountScreen from "../screens/AccountScreen";
 import ListingEditScreen from "../screens/ListingEditScreen";
-import ListingScreen from "../screens/ListingScreen";
+import FeedNavigator from "./FeedNavigator";
 
-export type AppTabParamList = {
-  Listings: undefined;
+export type AppNavigatorParams = {
+  Feed: undefined;
   ListingEdit: undefined;
   Account: undefined;
 };
 
-const Tab = createBottomTabNavigator<AppTabParamList>();
+const Tab = createBottomTabNavigator<AppNavigatorParams>();
 const AppNavigator = () => (
-  <Tab.Navigator>
-    <Tab.Screen name="Listings" component={ListingScreen}></Tab.Screen>
+  <Tab.Navigator screenOptions={{ headerShown: false }}>
+    <Tab.Screen name="Feed" component={FeedNavigator}></Tab.Screen>
     <Tab.Screen name="ListingEdit" component={ListingEditScreen}></Tab.Screen>
     <Tab.Screen name="Account" component={AccountScreen}></Tab.Screen>
   </Tab.Navigator>
