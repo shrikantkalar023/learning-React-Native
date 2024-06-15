@@ -77,3 +77,7 @@
 39. **navigation.push()** adds a new screen to the stack.
 
 40. Each **tab navigator** should have its own stack navigation state i.e. its own stack navigator.
+
+41. **api sauce**: underlying promise is always resolved, so we can avoid try-catch blocks. It is wrapper around axios.
+
+42. UI components should'nt know anything about data fetching. There should be a **separate api layer**.
