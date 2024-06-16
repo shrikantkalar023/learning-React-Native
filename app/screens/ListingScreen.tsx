@@ -1,8 +1,9 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { useEffect, useState } from "react";
-import { ActivityIndicator, FlatList, StyleSheet } from "react-native";
+import { FlatList, StyleSheet } from "react-native";
 
 import listingsApi from "../api/listings";
+import ActivityIndicator from "../components/ActivityIndicator";
 import AppButton from "../components/AppButton";
 import AppText from "../components/AppText";
 import Card from "../components/Card";
@@ -36,7 +37,7 @@ const ListingScreen = ({ navigation }: Props) => {
 
   return (
     <Screen style={styles.screen}>
-      {loading && <ActivityIndicator size="large" animating={loading} />}
+      <ActivityIndicator visible={loading} />
       {error && (
         <>
           <AppText>Couldn't retrieve the listings.</AppText>
