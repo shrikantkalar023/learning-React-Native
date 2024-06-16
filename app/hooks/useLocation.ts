@@ -1,9 +1,9 @@
 import * as Location from "expo-location";
 import { useEffect, useState } from "react";
-import { Ilocation } from "../interface/Ilocation";
+import { ILocation } from "../interface/location";
 
 const useLocation = () => {
-  const [location, setLocation] = useState<Ilocation>();
+  const [location, setLocation] = useState<ILocation>();
 
   useEffect(() => {
     (async () => {
