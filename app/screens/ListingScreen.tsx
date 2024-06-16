@@ -1,6 +1,6 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { useEffect, useState } from "react";
-import { FlatList, StyleSheet } from "react-native";
+import { ActivityIndicator, FlatList, StyleSheet } from "react-native";
 
 import listingsApi from "../api/listings";
 import AppButton from "../components/AppButton";
@@ -17,9 +17,13 @@ interface Props
 const ListingScreen = ({ navigation }: Props) => {
   const [listings, setListings] = useState<IListing[]>([]);
   const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const loadListings = async () => {
+    setLoading(true);
     const response = await listingsApi.getListings();
+    setLoading(false);
+
     if (!response.ok) return setError(true);
 
     setError(false); // Reset error state
@@ -32,6 +36,7 @@ const ListingScreen = ({ navigation }: Props) => {
 
   return (
     <Screen style={styles.screen}>
+      {loading && <ActivityIndicator size="large" animating={loading} />}
       {error && (
         <>
           <AppText>Couldn't retrieve the listings.</AppText>
