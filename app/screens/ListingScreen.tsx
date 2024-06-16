@@ -1,5 +1,5 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { FlatList, StyleSheet } from "react-native";
 
 import listingsApi from "../api/listings";
@@ -9,27 +9,19 @@ import AppText from "../components/AppText";
 import Card from "../components/Card";
 import Screen from "../components/Screen";
 import colors from "../config/colors";
-import IListing from "../interface/listing";
+import useApi from "../hooks/useApi";
 import { FeedNavigatorParams } from "../navigation/FeedNavigator";
 
 interface Props
   extends NativeStackScreenProps<FeedNavigatorParams, "Listings"> {}
 
 const ListingScreen = ({ navigation }: Props) => {
-  const [listings, setListings] = useState<IListing[]>([]);
-  const [error, setError] = useState(false);
-  const [loading, setLoading] = useState(false);
-
-  const loadListings = async () => {
-    setLoading(true);
-    const response = await listingsApi.getListings();
-    setLoading(false);
-
-    if (!response.ok) return setError(true);
-
-    setError(false); // Reset error state
-    response.data && setListings(response.data);
-  };
+  const {
+    data: listings,
+    loading,
+    request: loadListings,
+    error,
+  } = useApi(listingsApi.getListings);
 
   useEffect(() => {
     loadListings();
