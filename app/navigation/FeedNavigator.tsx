@@ -4,7 +4,7 @@ import ListingScreen from "../screens/ListingScreen";
 
 export type FeedNavigatorParams = {
   Listings: undefined;
-  ListingDetails: { image: number; title: string; price: number }; // image, title, price
+  ListingDetails: { imageUrl: string; title: string; price: number }; // image, title, price
 };
 
 const Stack = createNativeStackNavigator<FeedNavigatorParams>();

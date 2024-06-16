@@ -8,15 +8,15 @@ interface Props {
   title: string;
   // NOTE: to make this a generic component, we are using subTitle instead of price
   subTitle: string;
-  image: number;
+  imageUrl: string;
   onPress: () => void;
 }
 
-const Card = ({ title, subTitle, image, onPress }: Props) => {
+const Card = ({ title, subTitle, imageUrl, onPress }: Props) => {
   return (
     <TouchableWithoutFeedback onPress={onPress}>
       <View style={styles.card}>
-        <Image source={image} style={styles.image} />
+        <Image source={{ uri: imageUrl }} style={styles.image} />
         <View style={styles.detailsContainer}>
           <AppText style={styles.title} numberOfLines={1}>
             {title}

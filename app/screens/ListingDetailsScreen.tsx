@@ -11,12 +11,12 @@ interface Props
 
 const ListingDetailsScreen = ({
   route: {
-    params: { image, price, title },
+    params: { imageUrl, price, title },
   },
 }: Props) => {
   return (
     <View>
-      <Image source={image} style={styles.image} />
+      <Image source={{uri:imageUrl}} style={styles.image} />
       <View style={styles.detailsContainer}>
         <AppText style={styles.title}>{title}</AppText>
         <AppText style={styles.price}>${price}</AppText>
