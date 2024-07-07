@@ -1,12 +1,17 @@
-export default interface IListing {
+export interface IListing extends Omit<IPostListing, "images"> {
   id: number;
-  title: string;
-  images: { url: string; thumbnailUrl: string }[];
-  price: number;
-  categoryId: number;
   userId: number;
-  location: {
+  images: { url: string; thumbnailUrl: string }[];
+}
+
+export interface IPostListing {
+  title: string;
+  images: string[]; // array of uris
+  price: string;
+  categoryId: number; // string;
+  location?: {
     latitude: number;
     longitude: number;
   };
+  description?: string;
 }

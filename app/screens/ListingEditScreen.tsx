@@ -1,6 +1,7 @@
 import { StyleSheet } from "react-native";
 import { array, number, object, string } from "yup";
 
+import listingsApi from "../api/listings";
 import { AppPickerItem } from "../components/AppPicker";
 import CategoryPickerItem from "../components/CategoryPickerItem";
 import {
@@ -12,6 +13,7 @@ import AppFormImagePicker from "../components/forms/AppFormImagePicker";
 import AppFormPicker from "../components/forms/AppFormPicker";
 import Screen from "../components/Screen";
 import useLocation from "../hooks/useLocation";
+import { IPostListing } from "../interface/listing";
 
 const categories: AppPickerItem[] = [
   {
@@ -86,6 +88,16 @@ const validationSchema = object({
 const ListingEditScreen = () => {
   const location = useLocation();
 
+  const handleSubmit = async (listing: IPostListing) => {
+    const response = await listingsApi.addListings(
+      location ? { ...listing, location } : listing
+    );
+
+    if (!response.ok) return alert("Could not save the listing");
+
+    alert("Success");
+  };
+
   return (
     <Screen style={styles.container}>
       <AppForm
@@ -96,7 +108,22 @@ const ListingEditScreen = () => {
           category: null,
           images: [],
         }}
-        onSubmit={(values) => console.log(values, "location:", location)}
+        onSubmit={(
+          values: Omit<IPostListing, "categoryId" | "images"> & {
+            category: {
+              label: string;
+              value: number;
+            } | null;
+            images: { uri: string }[];
+          }
+        ) => {
+          const { category, ...rest } = values;
+          handleSubmit({
+            ...rest,
+            categoryId: values.category?.value as number,
+            images: values.images.map((image) => image.uri),
+          });
+        }}
         validationSchema={validationSchema}
       >
         <AppFormImagePicker name="images" />
