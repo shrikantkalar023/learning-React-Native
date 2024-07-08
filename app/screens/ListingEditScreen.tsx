@@ -115,7 +115,8 @@ const ListingEditScreen = () => {
               value: number;
             } | null;
             images: { uri: string }[];
-          }
+          },
+          { resetForm }
         ) => {
           const { category, ...rest } = values;
           handleSubmit({
@@ -123,6 +124,7 @@ const ListingEditScreen = () => {
             categoryId: values.category?.value as number,
             images: values.images.map((image) => image.uri),
           });
+          resetForm();
         }}
         validationSchema={validationSchema}
       >

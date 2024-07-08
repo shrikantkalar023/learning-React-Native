@@ -24,7 +24,6 @@ const listingsApi = {
     listing.location &&
       data.append("location", JSON.stringify(listing.location));
 
-    // console.log("formData:", data);
     return apiClient.post<IListing>(endpoint, data, {
       headers: {
         "Content-Type": "multipart/form-data",

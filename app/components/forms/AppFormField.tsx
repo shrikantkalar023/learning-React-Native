@@ -7,16 +7,18 @@ interface Props extends AppTextInputProps {
 }
 
 const AppFormField = ({ name, ...textInputProps }: Props) => {
-  const { setFieldTouched, handleChange, errors, touched } = useFormikContext<{
-    [name: string]: string;
-  }>();
+  const { setFieldTouched, values, setFieldValue, errors, touched } =
+    useFormikContext<{
+      [name: string]: string;
+    }>();
 
   return (
     <>
       <AppTextInput
         {...textInputProps}
         onBlur={() => setFieldTouched(name)}
-        onChangeText={handleChange(name)}
+        onChangeText={(text) => setFieldValue(name, text)}
+        value={values[name]}
       />
       <ErrorMessage error={errors[name]} visible={touched[name]} />
     </>
