@@ -47,7 +47,7 @@ const ListingScreen = ({ navigation }: Props) => {
             onPress={() =>
               navigation.navigate("ListingDetails", {
                 title: item.title,
-                price: item.price,
+                price: Number.parseInt(item.price),
                 imageUrl: item.images[0].url,
               })
             }

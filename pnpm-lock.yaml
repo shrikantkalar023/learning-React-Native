@@ -41,6 +41,9 @@ importers:
       expo-constants:
         specifier: ^16.0.2
         version: 16.0.2(expo@51.0.11(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7)))
+      expo-image:
+        specifier: ~1.12.12
+        version: 1.12.12(expo@51.0.11(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7)))
       expo-image-picker:
         specifier: ~15.0.5
         version: 15.0.5(expo@51.0.11(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7)))
@@ -1936,6 +1939,11 @@ packages:
 
   expo-image-picker@15.0.5:
     resolution: {integrity: sha512-Qqp16udsadx/YpNcNaWzfbmO0tbMxyX9bS1aFiDVC+Zffh8LY8S4HJJcnWqSC2TeuAl+9SxUwTloJagvPeMBBw==}
+    peerDependencies:
+      expo: '*'
+
+  expo-image@1.12.12:
+    resolution: {integrity: sha512-zZutUhKYqcqTH12o87pGCVLsuQeRK2vaNwxa8beznbDnmWevm3dmbOTCxaOhGgjyDxwcdwDa483Q4IKCXL6tBw==}
     peerDependencies:
       expo: '*'
 
@@ -6703,6 +6711,10 @@ snapshots:
     dependencies:
       expo: 51.0.11(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7))
       expo-image-loader: 4.7.0(expo@51.0.11(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7)))
+
+  expo-image@1.12.12(expo@51.0.11(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7))):
+    dependencies:
+      expo: 51.0.11(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7))
 
   expo-keep-awake@13.0.2(expo@51.0.11(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7))):
     dependencies:

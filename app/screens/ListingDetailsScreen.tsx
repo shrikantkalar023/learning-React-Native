@@ -1,5 +1,6 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { Image, StyleSheet, View } from "react-native";
+import { Image } from "expo-image";
+import { StyleSheet, View } from "react-native";
 
 import AppText from "../components/AppText";
 import ListItem from "../components/lists/ListItem";
@@ -16,7 +17,7 @@ const ListingDetailsScreen = ({
 }: Props) => {
   return (
     <View>
-      <Image source={{uri:imageUrl}} style={styles.image} />
+      <Image source={{ uri: imageUrl }} style={styles.image} />
       <View style={styles.detailsContainer}>
         <AppText style={styles.title}>{title}</AppText>
         <AppText style={styles.price}>${price}</AppText>

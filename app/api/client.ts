@@ -20,6 +20,7 @@ apiClient.get = async <T, U = T>(
     return response;
   }
 
+  console.log("using cache");
   const data = await cache.get(url);
   return data
     ? { ok: true, data: data as T, originalError: null, problem: null }
