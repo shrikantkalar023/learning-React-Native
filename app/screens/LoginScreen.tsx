@@ -1,11 +1,15 @@
+import { useState } from "react";
 import { Image, StyleSheet } from "react-native";
 import { object, string } from "yup";
+import authApi from "../api/auth";
 import {
   AppForm,
   AppFormField,
   AppFormSubmitButton,
+  ErrorMessage,
 } from "../components/forms";
 import Screen from "../components/Screen";
+import { IPostUser } from "../interface/user";
 
 const validationSchema = object({
   email: string().email().required().label("Email"),
@@ -13,12 +17,21 @@ const validationSchema = object({
 });
 
 const LoginScreen = () => {
+  const [loginFailed, setLoginFailed] = useState(false);
+
+  const handleSubmit = async ({ email, password }: IPostUser) => {
+    const response = await authApi.login(email, password);
+    if (!response.ok) return setLoginFailed(true);
+
+    setLoginFailed(false);
+    console.log(response.data);
+  };
   return (
     <Screen style={styles.container}>
       <Image style={styles.logo} source={require("../assets/logo-red.png")} />
       <AppForm
         initialValues={{ email: "", password: "" }}
-        onSubmit={(values) => console.log(values)}
+        onSubmit={handleSubmit}
         validationSchema={validationSchema}
       >
         <AppFormField
@@ -38,6 +51,10 @@ const LoginScreen = () => {
           placeholder="Password"
           secureTextEntry
           textContentType="password"
+        />
+        <ErrorMessage
+          error={"Invalid email and/or password."}
+          visible={loginFailed}
         />
         <AppFormSubmitButton title="Login" />
       </AppForm>
