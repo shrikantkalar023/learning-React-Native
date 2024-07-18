@@ -1,5 +1,7 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { useContext } from "react";
 import { FlatList, StyleSheet, View } from "react-native";
+import AuthContext from "../auth/context";
 import Icon from "../components/Icon";
 import ListItem from "../components/lists/ListItem";
 import ListItemSeparator from "../components/lists/ListItemSeparator";
@@ -29,12 +31,15 @@ interface Props
   extends NativeStackScreenProps<AccountNavigatorParams, "AccountScreen"> {}
 
 const AccountScreen = ({ navigation }: Props) => {
+  const { user } = useContext(AuthContext);
+  if (!user) return;
+
   return (
     <Screen style={styles.screen}>
       <View style={styles.container}>
         <ListItem
-          title="Shrikant Kalar"
-          subTitle="shrikantkalar023@gmail.com"
+          title={user.name}
+          subTitle={user.email}
           image={require("../assets/mosh.jpg")}
         />
       </View>
