@@ -1,3 +1,4 @@
+import { jwtDecode } from "jwt-decode";
 import { useState } from "react";
 import { Image, StyleSheet } from "react-native";
 import { object, string } from "yup";
@@ -24,8 +25,11 @@ const LoginScreen = () => {
     if (!response.ok) return setLoginFailed(true);
 
     setLoginFailed(false);
-    console.log(response.data);
+
+    const user = jwtDecode(response.data as string);
+    console.log(user);
   };
+
   return (
     <Screen style={styles.container}>
       <Image style={styles.logo} source={require("../assets/logo-red.png")} />
