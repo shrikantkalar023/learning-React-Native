@@ -31,7 +31,7 @@ interface Props
   extends NativeStackScreenProps<AccountNavigatorParams, "AccountScreen"> {}
 
 const AccountScreen = ({ navigation }: Props) => {
-  const { user } = useContext(AuthContext);
+  const { user, setUser } = useContext(AuthContext);
   if (!user) return;
 
   return (
@@ -68,6 +68,7 @@ const AccountScreen = ({ navigation }: Props) => {
       <ListItem
         title="Log Out"
         iconComponent={<Icon name="logout" backgroundColor="#ffe66d" />}
+        onPress={() => setUser(undefined)}
       />
     </Screen>
   );
