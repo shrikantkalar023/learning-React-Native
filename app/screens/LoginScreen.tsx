@@ -5,6 +5,7 @@ import { object, string } from "yup";
 
 import authApi from "../api/auth";
 import AuthContext from "../auth/context";
+import authStorage from "../auth/storage";
 import {
   AppForm,
   AppFormField,
@@ -26,12 +27,13 @@ const LoginScreen = () => {
 
   const handleSubmit = async ({ email, password }: IPostUser) => {
     const response = await authApi.login(email, password);
-    if (!response.ok) return setLoginFailed(true);
+    if (!response.ok || !response.data) return setLoginFailed(true);
 
     setLoginFailed(false);
 
-    const user: IUser = jwtDecode(response.data as string);
+    const user: IUser = jwtDecode(response.data);
     setUser(user);
+    authStorage.storeToken(response.data);
   };
 
   return (

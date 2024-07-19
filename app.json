@@ -11,7 +11,9 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true
     },
@@ -24,6 +26,9 @@
     "web": {
       "favicon": "app/assets/favicon.png"
     },
-    "description": "This is an app to sell your old stuff."
+    "description": "This is an app to sell your old stuff.",
+    "plugins": [
+      "expo-secure-store"
+    ]
   }
 }
