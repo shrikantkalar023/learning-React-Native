@@ -1,9 +1,7 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { useContext } from "react";
 import { FlatList, StyleSheet, View } from "react-native";
 
-import AuthContext from "../auth/context";
-import authStorage from "../auth/storage";
+import useAuth from "../auth/useAuth";
 import Icon from "../components/Icon";
 import ListItem from "../components/lists/ListItem";
 import ListItemSeparator from "../components/lists/ListItemSeparator";
@@ -33,13 +31,8 @@ interface Props
   extends NativeStackScreenProps<AccountNavigatorParams, "AccountScreen"> {}
 
 const AccountScreen = ({ navigation }: Props) => {
-  const { user, setUser } = useContext(AuthContext);
+  const { user, logOut } = useAuth();
   if (!user) return;
-
-  const handleLogOut = () => {
-    setUser(null);
-    authStorage.removeToken();
-  };
 
   return (
     <Screen style={styles.screen}>
@@ -75,7 +68,7 @@ const AccountScreen = ({ navigation }: Props) => {
       <ListItem
         title="Log Out"
         iconComponent={<Icon name="logout" backgroundColor="#ffe66d" />}
-        onPress={handleLogOut}
+        onPress={logOut}
       />
     </Screen>
   );

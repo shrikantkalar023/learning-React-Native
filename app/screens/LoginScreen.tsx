@@ -1,11 +1,9 @@
-import { jwtDecode } from "jwt-decode";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { Image, StyleSheet } from "react-native";
 import { object, string } from "yup";
 
 import authApi from "../api/auth";
-import AuthContext from "../auth/context";
-import authStorage from "../auth/storage";
+import useAuth from "../auth/useAuth";
 import {
   AppForm,
   AppFormField,
@@ -13,7 +11,7 @@ import {
   ErrorMessage,
 } from "../components/forms";
 import Screen from "../components/Screen";
-import { IPostUser, IUser } from "../interface/user";
+import { IPostUser } from "../interface/user";
 
 const validationSchema = object({
   email: string().email().required().label("Email"),
@@ -21,7 +19,7 @@ const validationSchema = object({
 });
 
 const LoginScreen = () => {
-  const { setUser } = useContext(AuthContext);
+  const { logIn } = useAuth();
 
   const [loginFailed, setLoginFailed] = useState(false);
 
@@ -31,9 +29,7 @@ const LoginScreen = () => {
 
     setLoginFailed(false);
 
-    const user: IUser = jwtDecode(response.data);
-    setUser(user);
-    authStorage.storeToken(response.data);
+    logIn(response.data);
   };
 
   return (
