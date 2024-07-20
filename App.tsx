@@ -1,6 +1,6 @@
 import { NavigationContainer } from "@react-navigation/native";
 import * as SplashScreen from "expo-splash-screen";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 import AuthContext from "./app/auth/context";
@@ -11,9 +11,9 @@ import AppNavigator from "./app/navigation/AppNavigator";
 import AuthNavigator from "./app/navigation/AuthNavigator";
 import navigationTheme from "./app/navigation/navigationTheme";
 
-export default function App() {
-  SplashScreen.preventAutoHideAsync();
+SplashScreen.preventAutoHideAsync();
 
+export default function App() {
   const [user, setUser] = useState<IUser | null>(null);
   const [isReady, setIsReady] = useState(false);
 
@@ -25,7 +25,6 @@ export default function App() {
       console.log("Error restoring token", error);
     } finally {
       setIsReady(true);
-      await SplashScreen.hideAsync();
     }
   };
 
@@ -33,16 +32,22 @@ export default function App() {
     restoreUser();
   }, []);
 
+  const onLayoutRootView = useCallback(async () => {
+    if (isReady) {
+      await SplashScreen.hideAsync();
+    }
+  }, [isReady]);
+
   if (!isReady) return null;
 
   return (
-    <NavigationContainer theme={navigationTheme}>
-      <GestureHandlerRootView style={{ flex: 1 }}>
+    <GestureHandlerRootView style={{ flex: 1 }} onLayout={onLayoutRootView}>
+      <NavigationContainer theme={navigationTheme}>
         <AuthContext.Provider value={{ user, setUser }}>
           <OfflineNotice />
           {user ? <AppNavigator /> : <AuthNavigator />}
         </AuthContext.Provider>
-      </GestureHandlerRootView>
-    </NavigationContainer>
+      </NavigationContainer>
+    </GestureHandlerRootView>
   );
 }
