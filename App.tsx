@@ -1,6 +1,5 @@
 import { NavigationContainer } from "@react-navigation/native";
 import * as SplashScreen from "expo-splash-screen";
-import { jwtDecode } from "jwt-decode";
 import { useEffect, useState } from "react";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 
@@ -18,10 +17,10 @@ export default function App() {
   const [user, setUser] = useState<IUser | null>(null);
   const [isReady, setIsReady] = useState(false);
 
-  const restoreToken = async () => {
+  const restoreUser = async () => {
     try {
-      const token = await authStorage.getToken();
-      if (token) setUser(jwtDecode(token));
+      const user = await authStorage.getUser();
+      if (user) setUser(user);
     } catch (error) {
       console.log("Error restoring token", error);
     } finally {
@@ -31,7 +30,7 @@ export default function App() {
   };
 
   useEffect(() => {
-    restoreToken();
+    restoreUser();
   }, []);
 
   if (!isReady) return null;
