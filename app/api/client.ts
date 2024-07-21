@@ -1,12 +1,21 @@
 import { ApiResponse, create } from "apisauce";
 import { AxiosRequestConfig } from "axios";
+
+import authStorage from "../auth/storage";
 import cache from "../utility/cache";
 
 const apiClient = create({
   baseURL: "http://localhost:9000/api",
 });
-
 export default apiClient;
+
+apiClient.addAsyncRequestTransform(async (request) => {
+  const authToken = await authStorage.getToken();
+  if (!authToken) return;
+
+  request.headers = request.headers || {};
+  request.headers["x-auth-token"] = authToken;
+});
 
 const get = apiClient.get;
 apiClient.get = async <T, U = T>(
