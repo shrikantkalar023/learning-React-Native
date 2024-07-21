@@ -11,7 +11,7 @@ import {
   ErrorMessage,
 } from "../components/forms";
 import Screen from "../components/Screen";
-import { IPostUser } from "../interface/user";
+import { ILogInUser } from "../interface/user";
 
 const validationSchema = object({
   email: string().email().required().label("Email"),
@@ -23,8 +23,8 @@ const LoginScreen = () => {
 
   const [loginFailed, setLoginFailed] = useState(false);
 
-  const handleSubmit = async ({ email, password }: IPostUser) => {
-    const response = await authApi.login(email, password);
+  const handleSubmit = async (user: ILogInUser) => {
+    const response = await authApi.login(user);
     if (!response.ok || !response.data) return setLoginFailed(true);
 
     setLoginFailed(false);
