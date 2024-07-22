@@ -4,6 +4,7 @@ import { object, string } from "yup";
 
 import authApi from "../api/auth";
 import useAuth from "../auth/useAuth";
+import ActivityIndicator from "../components/ActivityIndicator";
 import {
   AppForm,
   AppFormField,
@@ -11,6 +12,7 @@ import {
   ErrorMessage,
 } from "../components/forms";
 import Screen from "../components/Screen";
+import useApi from "../hooks/useApi";
 import { IRegisterUser } from "../interface/user";
 
 const validationSchema = object({
@@ -24,9 +26,11 @@ const RegisterScreen = () => {
   const [error, setError] = useState<string>();
 
   const { logIn } = useAuth();
+  const registerApi = useApi(authApi.register);
+  const loginApi = useApi(authApi.login);
 
   const handleSubmit = async (user: IRegisterUser) => {
-    const response = await authApi.register(user);
+    const response = await registerApi.request(user);
     if (!response.ok) {
       setRegisterFailed(true);
 
@@ -39,7 +43,7 @@ const RegisterScreen = () => {
       return;
     }
 
-    const loginResponse = await authApi.login({
+    const loginResponse = await loginApi.request({
       email: user.email,
       password: user.password,
     });
@@ -53,12 +57,13 @@ const RegisterScreen = () => {
 
   return (
     <Screen style={styles.container}>
+      <ActivityIndicator visible={registerApi.loading || loginApi.loading} />
+      <ErrorMessage error={error} visible={registerFailed} />
       <AppForm
         initialValues={{ name: "", email: "", password: "" }}
         onSubmit={handleSubmit}
         validationSchema={validationSchema}
       >
-        <ErrorMessage error={error} visible={registerFailed} />
         <AppFormField
           autoCorrect={false}
           icon="account"
