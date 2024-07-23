@@ -1,6 +1,7 @@
 import { ApiResponse } from "apisauce";
 import { useState } from "react";
 
+// TODO: instead of accepting args of type any, make it strongly typed by using generics.
 const useApi = <T>(apiFunc: (...args: any[]) => Promise<ApiResponse<T, T>>) => {
   const [data, setData] = useState<T>();
   const [error, setError] = useState(false);

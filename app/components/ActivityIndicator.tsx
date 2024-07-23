@@ -1,4 +1,5 @@
 import LottieView from "lottie-react-native";
+import { StyleSheet } from "react-native";
 
 interface Props {
   visible: boolean;
@@ -10,7 +11,7 @@ const ActivityIndicator = ({ visible }: Props) => {
   return (
     <LottieView
       source={require("../assets/animations/loader.json")}
-      style={{ width: "100%", height: "100%" }}
+      style={styles.overlay}
       autoPlay
       loop
     />
@@ -18,3 +19,14 @@ const ActivityIndicator = ({ visible }: Props) => {
 };
 
 export default ActivityIndicator;
+
+const styles = StyleSheet.create({
+  overlay: {
+    position: "absolute",
+    zIndex: 1,
+    backgroundColor: "white",
+    opacity: 0.8,
+    height: "100%",
+    width: "100%",
+  },
+});
