@@ -6,6 +6,7 @@ import * as Device from "expo-device";
 import * as Notifications from "expo-notifications";
 
 import { useEffect } from "react";
+import expoPushTokens from "../api/expoPushTokens";
 import ListingEditScreen from "../screens/ListingEditScreen";
 import AccountNavigator from "./AccountNavigator";
 import FeedNavigator from "./FeedNavigator";
@@ -56,6 +57,7 @@ const AppNavigator = () => {
           })
         ).data;
         console.log(token);
+        expoPushTokens.register(token);
       } catch (e) {
         console.log("Error in inner try-catch block", e);
       }

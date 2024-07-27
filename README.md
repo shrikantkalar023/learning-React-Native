@@ -83,3 +83,5 @@
 42. UI components should'nt know anything about data fetching. There should be a **separate api layer**.
 
 43. **Command Query Separation**: a function should either be command or query, but not both. A command is a function that changes the state of the system, and a query is a function that returns the state of the system.
+
+44. **eas build:configure** to configure the build settings.
