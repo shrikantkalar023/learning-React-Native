@@ -5,7 +5,7 @@ import Constants from "expo-constants";
 import * as Device from "expo-device";
 import * as Notifications from "expo-notifications";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import expoPushTokens from "../api/expoPushTokens";
 import ListingEditScreen from "../screens/ListingEditScreen";
 import AccountNavigator from "./AccountNavigator";
@@ -18,10 +18,43 @@ export type AppNavigatorParams = {
   Account: undefined;
 };
 
+// notification handler: this handles notification when they come.
+Notifications.setNotificationHandler({
+  handleNotification: async () => ({
+    shouldShowAlert: true,
+    shouldPlaySound: true,
+    shouldSetBadge: false,
+  }),
+});
+
 const Tab = createBottomTabNavigator<AppNavigatorParams>();
 const AppNavigator = () => {
+  const notificationListener = useRef<Notifications.Subscription>();
+  const responseListener = useRef<Notifications.Subscription>();
+
   useEffect(() => {
     registerForPushNotifications();
+
+    // notification received listener
+    notificationListener.current =
+      Notifications.addNotificationReceivedListener((notification) => {
+        console.log(notification);
+      });
+
+    // notification response listener
+    responseListener.current =
+      Notifications.addNotificationResponseReceivedListener((response) => {
+        console.log(response);
+      });
+
+    return () => {
+      notificationListener.current &&
+        Notifications.removeNotificationSubscription(
+          notificationListener.current
+        );
+      responseListener.current &&
+        Notifications.removeNotificationSubscription(responseListener.current);
+    };
   }, []);
 
   const registerForPushNotifications = async () => {
