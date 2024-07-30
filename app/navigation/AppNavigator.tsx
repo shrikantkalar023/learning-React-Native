@@ -11,6 +11,7 @@ import ListingEditScreen from "../screens/ListingEditScreen";
 import AccountNavigator from "./AccountNavigator";
 import FeedNavigator from "./FeedNavigator";
 import NewListingButton from "./NewListingButton";
+import { navigate } from "./rootNavigation";
 
 export type AppNavigatorParams = {
   Feed: undefined;
@@ -45,6 +46,7 @@ const AppNavigator = () => {
     responseListener.current =
       Notifications.addNotificationResponseReceivedListener((response) => {
         console.log(response);
+        navigate("Account");
       });
 
     return () => {
