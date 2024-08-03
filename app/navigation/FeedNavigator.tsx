@@ -1,10 +1,11 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { IListing } from "../interface/listing";
 import ListingDetailsScreen from "../screens/ListingDetailsScreen";
 import ListingScreen from "../screens/ListingScreen";
 
 export type FeedNavigatorParams = {
   Listings: undefined;
-  ListingDetails: { imageUrl: string; title: string; price: number }; // image, title, price
+  ListingDetails: IListing;
 };
 
 const Stack = createNativeStackNavigator<FeedNavigatorParams>();

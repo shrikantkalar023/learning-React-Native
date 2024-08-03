@@ -1,32 +1,54 @@
-import * as Notifications from "expo-notifications";
-import { Button } from "react-native";
-import Screen from "./app/components/Screen";
+import { NavigationContainer } from "@react-navigation/native";
+import * as SplashScreen from "expo-splash-screen";
+import { useCallback, useEffect, useState } from "react";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+
+import AuthContext from "./app/auth/context";
+import authStorage from "./app/auth/storage";
+import OfflineNotice from "./app/components/OfflineNotice";
+import { IUser } from "./app/interface/user";
+import AppNavigator from "./app/navigation/AppNavigator";
+import AuthNavigator from "./app/navigation/AuthNavigator";
+import navigationTheme from "./app/navigation/navigationTheme";
+import { navigationRef } from "./app/navigation/rootNavigation";
+
+SplashScreen.preventAutoHideAsync();
 
 export default function App() {
-  // handler for notifications
-  Notifications.setNotificationHandler({
-    handleNotification: async () => ({
-      shouldShowAlert: true,
-      shouldPlaySound: true,
-      shouldSetBadge: true,
-    }),
-  });
+  const [user, setUser] = useState<IUser | null>(null);
+  const [isReady, setIsReady] = useState(false);
 
-  const showNotification = async () => {
-    // scheduling a local notification
-    await Notifications.scheduleNotificationAsync({
-      content: {
-        title: "You've got mail! 📬",
-        body: "Here is the notification body",
-        data: { data: "goes here", test: { test1: "more data" } },
-      },
-      trigger: { seconds: 2 },
-    });
+  const restoreUser = async () => {
+    try {
+      const user = await authStorage.getUser();
+      if (user) setUser(user);
+    } catch (error) {
+      console.log("Error restoring token", error);
+    } finally {
+      setIsReady(true);
+    }
   };
 
+  useEffect(() => {
+    restoreUser();
+  }, []);
+
+  const onLayoutRootView = useCallback(async () => {
+    if (isReady) {
+      await SplashScreen.hideAsync();
+    }
+  }, [isReady]);
+
+  if (!isReady) return null;
+
   return (
-    <Screen>
-      <Button title="Press me" onPress={showNotification} />
-    </Screen>
+    <GestureHandlerRootView style={{ flex: 1 }} onLayout={onLayoutRootView}>
+      <NavigationContainer theme={navigationTheme} ref={navigationRef}>
+        <AuthContext.Provider value={{ user, setUser }}>
+          <OfflineNotice />
+          {user ? <AppNavigator /> : <AuthNavigator />}
+        </AuthContext.Provider>
+      </NavigationContainer>
+    </GestureHandlerRootView>
   );
 }
