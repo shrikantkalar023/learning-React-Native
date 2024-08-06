@@ -2,10 +2,11 @@ import { ApiResponse, create } from "apisauce";
 import { AxiosRequestConfig } from "axios";
 
 import authStorage from "../auth/storage";
+import settings from "../config/settings";
 import cache from "../utility/cache";
 
 const apiClient = create({
-  baseURL: "http://localhost:9000/api",
+  baseURL: settings.apiUrl,
 });
 export default apiClient;
 
@@ -29,7 +30,6 @@ apiClient.get = async <T, U = T>(
     return response;
   }
 
-  console.log("using cache");
   const data = await cache.get(url);
   return data
     ? { ok: true, data: data as T, originalError: null, problem: null }
