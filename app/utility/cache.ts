@@ -1,4 +1,5 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import logger from "./logger";
 
 const prefix = "cached";
 const expiryInMilliseconds = 5 * 60 * 1000;
@@ -12,7 +13,7 @@ const store = async (key: string, value: unknown) => {
 
     await AsyncStorage.setItem(prefix + key, JSON.stringify(item));
   } catch (error) {
-    console.log(error);
+    logger.log(error);
   }
 };
 
@@ -38,7 +39,7 @@ const get = async (key: string) => {
 
     return item.value;
   } catch (error) {
-    console.log(error);
+    logger.log(error);
   }
 };
 

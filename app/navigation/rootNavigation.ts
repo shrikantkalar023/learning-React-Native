@@ -1,4 +1,5 @@
 import { createNavigationContainerRef } from "@react-navigation/native";
+import logger from "../utility/logger";
 import { AppNavigatorParams } from "./AppNavigator";
 
 export const navigationRef = createNavigationContainerRef<AppNavigatorParams>();
@@ -8,6 +9,6 @@ export const navigate = (name: keyof AppNavigatorParams): void => {
     // not adding params bsc we are not using them in app navigator
     navigationRef.navigate(name);
   } else {
-    console.log("Navigation not ready");
+    logger.log("Navigation not ready");
   }
 };

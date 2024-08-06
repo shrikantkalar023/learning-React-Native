@@ -14,6 +14,7 @@ import {
 import Screen from "../components/Screen";
 import useApi from "../hooks/useApi";
 import { IRegisterUser } from "../interface/user";
+import logger from "../utility/logger";
 
 const validationSchema = object({
   name: string().required().label("Name"),
@@ -37,7 +38,7 @@ const RegisterScreen = () => {
       if (response.data) setError(response.data.error);
       else {
         setError("An unexpected error occurred.");
-        console.error(response);
+        logger.log(response);
       }
 
       return;

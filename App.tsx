@@ -11,8 +11,10 @@ import AppNavigator from "./app/navigation/AppNavigator";
 import AuthNavigator from "./app/navigation/AuthNavigator";
 import navigationTheme from "./app/navigation/navigationTheme";
 import { navigationRef } from "./app/navigation/rootNavigation";
+import logger from "./app/utility/logger";
 
 SplashScreen.preventAutoHideAsync();
+logger.start();
 
 export default function App() {
   const [user, setUser] = useState<IUser | null>(null);
@@ -23,7 +25,8 @@ export default function App() {
       const user = await authStorage.getUser();
       if (user) setUser(user);
     } catch (error) {
-      console.log("Error restoring token", error);
+      logger.log("Error restoring token");
+      logger.log(error);
     } finally {
       setIsReady(true);
     }

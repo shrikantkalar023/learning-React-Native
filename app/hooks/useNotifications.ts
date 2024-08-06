@@ -3,6 +3,7 @@ import * as Device from "expo-device";
 import * as Notifications from "expo-notifications";
 import { useEffect, useRef } from "react";
 import expoPushTokens from "../api/expoPushTokens";
+import logger from "../utility/logger";
 
 const useNotifications = (
   notificationReceivedListener?: () => void,
@@ -76,13 +77,14 @@ const useNotifications = (
             projectId,
           })
         ).data;
-        console.log(token);
         expoPushTokens.register(token);
-      } catch (e) {
-        console.log("Error in inner try-catch block", e);
+      } catch (error) {
+        logger.log("Error in inner try-catch block");
+        logger.log(error);
       }
     } catch (error) {
-      console.log("Error getting a push token", error);
+      logger.log("Error getting notification permission");
+      logger.log(error);
     }
   };
 

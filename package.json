@@ -10,6 +10,7 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@bugsnag/expo": "^51.0.0",
     "@expo/metro-runtime": "~3.2.1",
     "@expo/vector-icons": "^14.0.2",
     "@react-native-async-storage/async-storage": "1.23.1",
@@ -20,8 +21,11 @@
     "@react-navigation/native-stack": "^6.9.26",
     "apisauce": "^3.0.1",
     "expo": "~51.0.11",
+    "expo-application": "~5.9.1",
     "expo-constants": "^16.0.2",
+    "expo-crypto": "~13.0.2",
     "expo-device": "~6.0.2",
+    "expo-file-system": "~17.0.1",
     "expo-image": "~1.12.12",
     "expo-image-picker": "~15.0.5",
     "expo-location": "~17.0.1",
@@ -43,6 +47,8 @@
   },
   "devDependencies": {
     "@babel/core": "^7.24.7",
+    "@bugsnag/plugin-expo-eas-sourcemaps": "^51.0.0",
+    "@bugsnag/source-maps": "^2.3.3",
     "@types/react": "~18.2.79",
     "typescript": "^5.4.5"
   },

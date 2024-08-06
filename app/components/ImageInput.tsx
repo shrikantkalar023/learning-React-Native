@@ -8,6 +8,7 @@ import {
   View,
 } from "react-native";
 import colors from "../config/colors";
+import logger from "../utility/logger";
 
 export interface ImageInputProps {
   imageUri?: string;
@@ -30,7 +31,8 @@ const ImageInput = ({
         onAddImage(result.assets);
       }
     } catch (error) {
-      console.log("Error selecting image", error);
+      logger.log("Error selecting image");
+      logger.log(error);
     }
   };
 

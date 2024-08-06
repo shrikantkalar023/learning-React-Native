@@ -2,6 +2,7 @@ import * as SecureStore from "expo-secure-store";
 import { jwtDecode } from "jwt-decode";
 
 import { IUser } from "../interface/user";
+import logger from "../utility/logger";
 
 const key = "authToken";
 
@@ -10,7 +11,8 @@ const authStorage = {
     try {
       await SecureStore.setItemAsync(key, token);
     } catch (err) {
-      console.log("Error storing the auth token", err);
+      logger.log("Error storing the auth token");
+      logger.log(err);
     }
   },
 
@@ -18,7 +20,8 @@ const authStorage = {
     try {
       return await SecureStore.getItemAsync(key);
     } catch (error) {
-      console.log("Error getting the auth token", error);
+      logger.log("Error getting the auth token");
+      logger.log(error);
     }
   },
 
@@ -32,7 +35,8 @@ const authStorage = {
     try {
       await SecureStore.deleteItemAsync(key);
     } catch (error) {
-      console.log("Error removing the auth token", error);
+      logger.log("Error removing the auth token");
+      logger.log(error);
     }
   },
 };

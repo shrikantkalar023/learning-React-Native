@@ -11,7 +11,9 @@
       "resizeMode": "cover",
       "backgroundColor": "#e63c4b"
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true
     },
@@ -25,10 +27,16 @@
       "favicon": "app/assets/favicon.png"
     },
     "description": "This is an app to sell your old stuff.",
-    "plugins": ["expo-secure-store"],
+    "plugins": [
+      "expo-secure-store",
+      "@bugsnag/plugin-expo-eas-sourcemaps"
+    ],
     "extra": {
       "eas": {
         "projectId": "b84d73d7-e12d-4219-b08d-02e8be70f92b"
+      },
+      "bugsnag": {
+        "apiKey": "19ecbe609fbeed25979895099b07ef20"
       }
     }
   }
